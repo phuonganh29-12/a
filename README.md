@@ -175,7 +175,7 @@ cd odoo-fitdnu
 # 2. Khởi động
 docker-compose up -d
 
-# 3. Truy cập tại http://localhost:8069
+# 3. Truy cập tại http://localhost:8070
 # Username: admin
 # Password: admin
 ```
@@ -214,7 +214,7 @@ cp odoo.conf.template odoo.conf
 ./odoo-bin -c odoo.conf
 # Hoặc: python3 odoo-bin.py -c odoo.conf
 
-# 9. Truy cập: http://localhost:8069
+# 9. Truy cập: http://localhost:8070
 ```
 
 ### 🪟 4.4 Cài Đặt Trên Windows
@@ -237,7 +237,7 @@ pip install -r requirements.txt
 # 6. Chạy Odoo
 python odoo-bin.py -c odoo.conf
 
-# 7. Truy cập: http://localhost:8069
+# 7. Truy cập: http://localhost:8070
 ```
 
 ## 📚 5. Hướng Dẫn Sử Dụng
@@ -320,15 +320,16 @@ Chức năng:
 
 ## 📞 8. Support & Liên Hệ
 
-- 📧 Email: [bbikemcutie@gmail.com]
+- 📧 Email: [phannk2904@gmail.com]
 - 🌐 Website: [https://dainam.edu.vn]
 - 💬 Issues: GitHub Issues
 
 ## 📄 9. License & Attribution
 
 - **License**: [MIT/GPL/Commercial]
-- **Developed by**: NgocDuyen-MaiHuong-HuyenTrang, Faculty of Information Technology, DaiNam University
+- **Developed by**: VietLoi-PhuongAnh-MaiLan, Faculty of Information Technology, DaiNam University
 - **Built with**: [Odoo](https://odoo.com)
+- **Reference source**: [TTDN-15-03-N5](https://github.com/ThienDao103/TTDN-15-03-N5) - Quản Lý Khách Hàng
 
 ## 🙏 10. Đóng Góp
 
@@ -350,6 +351,6 @@ Xem thêm: [CONTRIBUTING.md](CONTRIBUTING.md)
 
 ⭐ Nếu bạn thích project này, hãy star nó! ⭐
 
-Made with ❤️ by DuynTran, MaiHuong, HuyenTrang
+Made with ❤️ by VietLoi, PhuongAnh, MaiLan
 
 </div>
