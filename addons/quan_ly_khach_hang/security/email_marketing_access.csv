@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_email_marketing_campaign,email.marketing.campaign,model_email_marketing_campaign,base.group_user,1,1,1,1
+access_email_marketing_template,email.marketing.template,model_email_marketing_template,base.group_user,1,1,1,1
+access_email_marketing_log,email.marketing.log,model_email_marketing_log,base.group_user,1,1,1,0
+access_customer_care,customer.care,model_customer_care,base.group_user,1,1,1,1
+access_wizard_send_email_marketing,wizard.send.email.marketing,model_wizard_send_email_marketing,base.group_user,1,1,1,1
+access_wizard_test_email_template,wizard.test.email.template,model_wizard_test_email_template,base.group_user,1,1,1,1

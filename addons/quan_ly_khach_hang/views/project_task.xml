@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Form View -->
+        <record id="view_project_task_form" model="ir.ui.view">
+            <field name="name">project_task</field>
+            <field name="model">project_task</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <div class="oe_read_only" style="font-size:25px">Nhiệm vụ</div>
+                        <group col="4" string="Thông tin chung">
+                            <field name="project_task_id"/>
+                            <field name="name"/>
+                            <field name="customer_id"/>
+                            <field name="employee_id"/>
+                            <field name="deadline"/>
+                            <field name="actual_completion_date"/>
+                            <field name="is_overdue" readonly="1"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Tree View -->
+        <record id="view_project_task_tree" model="ir.ui.view">
+            <field name="name">project_task</field>
+            <field name="model">project_task</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="project_task_id"/>
+                    <field name="name"/>
+                    <field name="customer_id"/>
+                    <field name="employee_id"/>
+                    <field name="deadline"/>
+                    <field name="actual_completion_date"/>
+                    <field name="is_overdue"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Search View -->
+        <record model="ir.ui.view" id="project_task_search">
+            <field name="model">project_task</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="project_task_id"/>
+                    <field name="name"/>
+                    <field name="customer_id"/>
+                    <field name="employee_id"/>
+                    <field name="deadline"/>
+                    <field name="actual_completion_date"/>
+                    <group expand="1" string="Group By">
+                        <filter string="Nhân viên" name="group_by_employee" context="{'group_by': 'employee_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!-- Action -->
+        <record id="action_project_task" model="ir.actions.act_window">
+            <field name="name">Nhiệm vụ</field>
+            <field name="res_model">project_task</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="project_task_search"/>
+        </record>
+
+        <!-- Menu -->
+        <menuitem id="menu_project_task_root" name="Quản lý Nhiệm vụ"/>
+        <menuitem id="menu_project_task" name="Nhiệm vụ" parent="menu_project_task_root" action="action_project_task" sequence="10"/>
+    </data>
+</odoo>

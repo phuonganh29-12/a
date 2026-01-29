@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Form View -->
+        <record id="view_lich_su_lam_viec_form" model="ir.ui.view">
+            <field name="name">lich_su_lam_viec.form</field>
+            <field name="model">lich_su_lam_viec</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="loai_thay_doi"/>
+                            </h1>
+                        </div>
+                        
+                        <group>
+                            <group string="Thông tin nhân viên">
+                                <field name="nhan_vien_id"/>
+                                <field name="phong_ban_id"/>
+                                <field name="chuc_vu_id"/>
+                            </group>
+                            <group string="Thời gian">
+                                <field name="ngay_bat_dau"/>
+                                <field name="ngay_ket_thuc"/>
+                                <field name="so_ngay"/>
+                                <field name="dang_ap_dung" invisible="1"/>
+                            </group>
+                        </group>
+                        
+                        <group>
+                            <group string="Thông tin chi tiết">
+                                <field name="ly_do" placeholder="Lý do thay đổi"/>
+                                <field name="ghi_chu" placeholder="Ghi chú thêm"/>
+                            </group>
+                            <group>
+                                <field name="active"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Tree View -->
+        <record id="view_lich_su_lam_viec_tree" model="ir.ui.view">
+            <field name="name">lich_su_lam_viec.tree</field>
+            <field name="model">lich_su_lam_viec</field>
+            <field name="arch" type="xml">
+                <tree decoration-success="dang_ap_dung==True">
+                    <field name="nhan_vien_id"/>
+                    <field name="phong_ban_id"/>
+                    <field name="chuc_vu_id"/>
+                    <field name="loai_thay_doi"/>
+                    <field name="ngay_bat_dau"/>
+                    <field name="ngay_ket_thuc"/>
+                    <field name="so_ngay"/>
+                    <field name="dang_ap_dung" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Search View -->
+        <record id="view_lich_su_lam_viec_search" model="ir.ui.view">
+            <field name="name">lich_su_lam_viec.search</field>
+            <field name="model">lich_su_lam_viec</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="nhan_vien_id"/>
+                    <field name="phong_ban_id"/>
+                    <field name="chuc_vu_id"/>
+                    
+                    <filter string="Đang áp dụng" name="dang_ap_dung" 
+                            domain="[('dang_ap_dung', '=', True)]"/>
+                    <filter string="Đã kết thúc" name="da_ket_thuc" 
+                            domain="[('dang_ap_dung', '=', False)]"/>
+                    
+                    <separator/>
+                    <filter string="Tuyển dụng mới" name="new_hire" 
+                            domain="[('loai_thay_doi', '=', 'new_hire')]"/>
+                    <filter string="Thăng chức" name="promotion" 
+                            domain="[('loai_thay_doi', '=', 'promotion')]"/>
+                    <filter string="Chuyển phòng ban" name="transfer" 
+                            domain="[('loai_thay_doi', '=', 'transfer')]"/>
+                    
+                    <group expand="0" string="Group By">
+                        <filter string="Nhân viên" name="group_nhan_vien" 
+                                context="{'group_by':'nhan_vien_id'}"/>
+                        <filter string="Phòng ban" name="group_phong_ban" 
+                                context="{'group_by':'phong_ban_id'}"/>
+                        <filter string="Chức vụ" name="group_chuc_vu" 
+                                context="{'group_by':'chuc_vu_id'}"/>
+                        <filter string="Loại thay đổi" name="group_loai" 
+                                context="{'group_by':'loai_thay_doi'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!-- Action -->
+        <record id="action_lich_su_lam_viec" model="ir.actions.act_window">
+            <field name="name">Lịch sử làm việc</field>
+            <field name="res_model">lich_su_lam_viec</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_lich_su_lam_viec_search"/>
+        </record>
+    </data>
+</odoo>
+        
+    

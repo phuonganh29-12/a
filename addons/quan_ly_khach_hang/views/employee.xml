@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Form View -->
+        <record id="view_employee_form" model="ir.ui.view">
+            <field name="name">employee</field>
+            <field name="model">employee</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <div class="oe_read_only" style="font-size:25px; font-weight: bold; margin-bottom: 20px;">Thông tin nhân viên</div>
+                        <group col="4" string="Thông tin chung">
+                            <field name="employee_id"/>
+                            <field name="name"/>
+                            <field name="email"/>
+                            <field name="phone"/>
+                            <field name="gender"/>
+                            <field name="date_of_birth"/>
+                            <field name="address"/>
+                            <field name="job_title"/>
+                        </group>
+                        <notebook>
+                            <page string="Chiến dịch Marketing">
+                                <field name="marketing_campaign_ids"/>
+                            </page>
+                            <page string="Ghi chú">
+                                <field name="note_ids"/>
+                            </page>
+                            <page string="Nhiệm vụ dự án">
+                                <field name="project_task_ids"/>
+                            </page>
+                            <page string="Tương tác khách hàng">
+                                <field name="crm_interact_ids"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Tree View -->
+        <record id="view_employee_tree" model="ir.ui.view">
+            <field name="name">employee</field>
+            <field name="model">employee</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="employee_id"/>
+                    <field name="name"/>
+                    <field name="email"/>
+                    <field name="phone"/>
+                    <field name="job_title"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Search View -->
+        <record id="employee_search" model="ir.ui.view">
+            <field name="name">employee</field>
+            <field name="model">employee</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="employee_id"/>
+                    <field name="name"/>
+                    <field name="email"/>
+                    <field name="phone"/>
+                    <field name="job_title"/>
+                    <filter string="Nhân viên nam" name="male_employees" domain="[('gender', '=', 'male')]"/>
+                    <filter string="Nhân viên nữ" name="female_employees" domain="[('gender', '=', 'female')]"/>
+                </search>
+            </field>
+        </record>
+
+        <!-- Action -->
+        <record id="action_employee" model="ir.actions.act_window">
+            <field name="name">Nhân viên</field>
+            <field name="res_model">employee</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="employee_search"/>
+        </record>
+    </data>
+</odoo>

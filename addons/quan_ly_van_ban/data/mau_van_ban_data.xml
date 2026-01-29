@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        
+        <!-- Mẫu công văn thông báo -->
+        <record id="mau_cong_van_thong_bao" model="mau_van_ban">
+            <field name="name">Mẫu công văn thông báo</field>
+            <field name="ma_mau">MAU_CV_TB_001</field>
+            <field name="sequence">10</field>
+            <field name="loai_van_ban_id" ref="loai_van_ban_cong_van"/>
+            <field name="trang_thai">active</field>
+            <field name="noi_dung_html"><![CDATA[
+<div style="font-family: 'Times New Roman', serif; font-size: 13pt; line-height: 1.5;">
+    <div style="text-align: center;">
+        <p><strong>CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</strong></p>
+        <p><strong>Độc lập - Tự do - Hạnh phúc</strong></p>
+        <p>_______________</p>
+    </div>
+    
+    <div style="text-align: right; margin-top: 20px;">
+        <p><em>${ngay_thang_nam}</em></p>
+    </div>
+    
+    <div style="text-align: center; margin-top: 30px;">
+        <p><strong>CÔNG VĂN THÔNG BÁO</strong></p>
+        <p>Về việc: ${trich_yeu}</p>
+    </div>
+    
+    <div style="margin-top: 30px; text-align: justify;">
+        <p>Kính gửi: ${ten_khach_hang}</p>
+        
+        <p style="text-indent: 30px;">
+            Căn cứ vào yêu cầu công việc, chúng tôi xin thông báo đến Quý công ty về ${trich_yeu}.
+        </p>
+        
+        <p style="text-indent: 30px;">
+            Kính mong nhận được sự phối hợp và hỗ trợ từ phía Quý công ty.
+        </p>
+        
+        <p>Trân trọng cảm ơn!</p>
+    </div>
+    
+    <div style="margin-top: 50px; text-align: right;">
+        <p><strong>NGƯỜI PHỤ TRÁCH</strong></p>
+        <p style="margin-top: 60px;">${ten_nhan_vien}</p>
+    </div>
+</div>
+            ]]></field>
+            <field name="huong_dan">Mẫu công văn thông báo chung cho khách hàng. Thay đổi nội dung phần thân văn bản theo nhu cầu.</field>
+        </record>
+
+        <!-- Mẫu hợp đồng kinh tế -->
+        <record id="mau_hop_dong_kinh_te" model="mau_van_ban">
+            <field name="name">Mẫu hợp đồng kinh tế</field>
+            <field name="ma_mau">MAU_HD_KT_001</field>
+            <field name="sequence">20</field>
+            <field name="loai_van_ban_id" ref="loai_van_ban_hop_dong"/>
+            <field name="trang_thai">active</field>
+            <field name="noi_dung_html"><![CDATA[
+<div style="font-family: 'Times New Roman', serif; font-size: 13pt; line-height: 1.5;">
+    <div style="text-align: center;">
+        <p><strong>CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</strong></p>
+        <p><strong>Độc lập - Tự do - Hạnh phúc</strong></p>
+        <p>_______________</p>
+    </div>
+    
+    <div style="text-align: center; margin-top: 30px;">
+        <p><strong>HỢP ĐỒNG KINH TẾ</strong></p>
+        <p>Số: ${so_van_ban}</p>
+        <p>Về việc: ${trich_yeu}</p>
+    </div>
+    
+    <div style="margin-top: 30px; text-align: justify;">
+        <p><strong>BÊN A (Bên cung cấp dịch vụ):</strong></p>
+        <p>Tên công ty: ______________________</p>
+        <p>Địa chỉ: ______________________</p>
+        <p>Người đại diện: ${ten_nhan_vien}</p>
+        <p>Chức vụ: ${chuc_vu}</p>
+        
+        <p style="margin-top: 20px;"><strong>BÊN B (Bên sử dụng dịch vụ):</strong></p>
+        <p>Tên khách hàng: ${ten_khach_hang}</p>
+        <p>Địa chỉ: ${dia_chi_khach_hang}</p>
+        <p>Điện thoại: ${sdt_khach_hang}</p>
+        <p>Email: ${email_khach_hang}</p>
+        
+        <p style="margin-top: 20px;"><strong>ĐIỀU 1: NỘI DUNG HỢP ĐỒNG</strong></p>
+        <p style="text-indent: 30px;">
+            Bên A đồng ý cung cấp dịch vụ theo yêu cầu của Bên B.
+        </p>
+        
+        <p style="margin-top: 20px;"><strong>ĐIỀU 2: THỜI HẠN HỢP ĐỒNG</strong></p>
+        <p style="text-indent: 30px;">
+            Hợp đồng có hiệu lực từ ngày ký.
+        </p>
+        
+        <p style="margin-top: 20px;"><strong>ĐIỀU 3: ĐIỀU KHOẢN CHUNG</strong></p>
+        <p style="text-indent: 30px;">
+            Hai bên cam kết thực hiện đúng các điều khoản đã thỏa thuận.
+        </p>
+    </div>
+    
+    <div style="margin-top: 50px;">
+        <table style="width: 100%;">
+            <tr>
+                <td style="width: 50%; text-align: center;">
+                    <p><strong>ĐẠI DIỆN BÊN A</strong></p>
+                    <p style="margin-top: 60px;">${ten_nhan_vien}</p>
+                </td>
+                <td style="width: 50%; text-align: center;">
+                    <p><strong>ĐẠI DIỆN BÊN B</strong></p>
+                    <p style="margin-top: 60px;">${ten_khach_hang}</p>
+                </td>
+            </tr>
+        </table>
+    </div>
+    
+    <div style="text-align: right; margin-top: 20px;">
+        <p><em>${ngay_thang_nam}</em></p>
+    </div>
+</div>
+            ]]></field>
+            <field name="huong_dan">Mẫu hợp đồng kinh tế cơ bản. Cần bổ sung chi tiết về giá trị, phương thức thanh toán và các điều khoản cụ thể.</field>
+        </record>
+
+        <!-- Mẫu báo giá -->
+        <record id="mau_bao_gia" model="mau_van_ban">
+            <field name="name">Mẫu báo giá</field>
+            <field name="ma_mau">MAU_BG_001</field>
+            <field name="sequence">30</field>
+            <field name="loai_van_ban_id" ref="loai_van_ban_bao_gia"/>
+            <field name="trang_thai">active</field>
+            <field name="noi_dung_html"><![CDATA[
+<div style="font-family: 'Times New Roman', serif; font-size: 13pt; line-height: 1.5;">
+    <div style="text-align: center; margin-top: 30px;">
+        <p><strong>BÁO GIÁ</strong></p>
+        <p>Số: ${so_van_ban}</p>
+        <p>${ngay_thang_nam}</p>
+    </div>
+    
+    <div style="margin-top: 30px; text-align: justify;">
+        <p>Kính gửi: <strong>${ten_khach_hang}</strong></p>
+        <p>Địa chỉ: ${dia_chi_khach_hang}</p>
+        <p>Điện thoại: ${sdt_khach_hang}</p>
+        
+        <p style="margin-top: 20px; text-indent: 30px;">
+            Căn cứ vào yêu cầu của Quý khách hàng, chúng tôi xin gửi đến Quý công ty bảng báo giá như sau:
+        </p>
+        
+        <p style="margin-top: 20px;"><strong>NỘI DUNG BÁO GIÁ:</strong></p>
+        <p style="text-indent: 30px;">
+            [Chi tiết sản phẩm/dịch vụ sẽ được bổ sung]
+        </p>
+        
+        <p style="margin-top: 20px;"><strong>ĐIỀU KIỆN:</strong></p>
+        <ul>
+            <li>Thời gian báo giá có hiệu lực: 30 ngày kể từ ngày phát hành</li>
+            <li>Phương thức thanh toán: Chuyển khoản hoặc tiền mặt</li>
+            <li>Thời gian giao hàng: Theo thỏa thuận</li>
+        </ul>
+        
+        <p style="margin-top: 20px;">
+            Rất mong nhận được sự hợp tác của Quý công ty.
+        </p>
+        <p>Trân trọng!</p>
+    </div>
+    
+    <div style="margin-top: 50px; text-align: right;">
+        <p><strong>NGƯỜI PHỤ TRÁCH</strong></p>
+        <p style="margin-top: 60px;">${ten_nhan_vien}</p>
+        <p>${sdt_nhan_vien}</p>
+    </div>
+</div>
+            ]]></field>
+            <field name="huong_dan">Mẫu báo giá sản phẩm/dịch vụ. Cần bổ sung bảng chi tiết giá, số lượng và tổng giá trị.</field>
+        </record>
+
+    </data>
+</odoo>

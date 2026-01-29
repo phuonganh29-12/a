@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Tree View -->
+    <record id="view_email_marketing_campaign_tree" model="ir.ui.view">
+        <field name="name">email.marketing.campaign.tree</field>
+        <field name="model">email.marketing.campaign</field>
+        <field name="arch" type="xml">
+            <tree string="Chiến dịch Email Marketing" 
+                  decoration-info="trang_thai=='draft'"
+                  decoration-warning="trang_thai=='scheduled'"
+                  decoration-success="trang_thai=='sent'"
+                  decoration-muted="trang_thai=='cancelled'">
+                <field name="ma_chien_dich"/>
+                <field name="name"/>
+                <field name="email_template_id"/>
+                <field name="doi_tuong"/>
+                <field name="tong_khach_hang"/>
+                <field name="ngay_gui_du_kien"/>
+                <field name="so_email_gui"/>
+                <field name="ty_le_thanh_cong" widget="progressbar"/>
+                <field name="trang_thai" widget="badge"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_email_marketing_campaign_form" model="ir.ui.view">
+        <field name="name">email.marketing.campaign.form</field>
+        <field name="model">email.marketing.campaign</field>
+        <field name="arch" type="xml">
+            <form string="Chiến dịch Email Marketing">
+                <header>
+                    <button name="action_schedule" string="Lên lịch" type="object" 
+                            class="btn-primary" attrs="{'invisible': [('trang_thai', '!=', 'draft')]}"/>
+                    <button name="action_send_now" string="Gửi ngay" type="object" 
+                            class="oe_highlight" attrs="{'invisible': [('trang_thai', 'not in', ['draft', 'scheduled'])]}"/>
+                    <button name="action_cancel" string="Hủy" type="object" 
+                            attrs="{'invisible': [('trang_thai', 'in', ['sent', 'cancelled'])]}"/>
+                    <button name="action_view_logs" string="Xem chi tiết" type="object" icon="fa-list"
+                            attrs="{'invisible': [('so_email_gui', '=', 0)]}"/>
+                    <field name="trang_thai" widget="statusbar" 
+                           statusbar_visible="draft,scheduled,sending,sent"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_view_logs" type="object" class="oe_stat_button" icon="fa-envelope-o">
+                            <field name="so_email_gui" string="Emails" widget="statinfo"/>
+                        </button>
+                    </div>
+                    
+                    <div class="oe_title">
+                        <h1><field name="name" placeholder="Tên chiến dịch..."/></h1>
+                        <h3><field name="ma_chien_dich" readonly="1"/></h3>
+                    </div>
+
+                    <group>
+                        <group string="Thông tin cơ bản">
+                            <field name="email_template_id"/>
+                            <field name="ngay_gui_du_kien"/>
+                            <field name="mo_ta"/>
+                        </group>
+                        <group string="Đối tượng nhận">
+                            <field name="doi_tuong" widget="radio"/>
+                            <field name="tong_khach_hang" readonly="1"/>
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <page string="Lọc khách hàng" attrs="{'invisible': [('doi_tuong', '!=', 'filter')]}">
+                            <group>
+                                <field name="loai_khach_hang_ids" widget="many2many_tags"/>
+                                <field name="tinh_trang_ids" widget="many2many_tags"/>
+                                <field name="nguon_khach_ids" widget="many2many_tags"/>
+                            </group>
+                        </page>
+
+                        <page string="Chọn khách hàng" attrs="{'invisible': [('doi_tuong', '!=', 'manual')]}">
+                            <field name="customer_ids">
+                                <tree>
+                                    <field name="customer_name"/>
+                                    <field name="email"/>
+                                    <field name="phone"/>
+                                    <field name="loai_khach_hang_id"/>
+                                </tree>
+                            </field>
+                        </page>
+
+                        <page string="Thống kê" attrs="{'invisible': [('trang_thai', 'in', ['draft', 'scheduled'])]}">
+                            <group>
+                                <group string="Gửi email">
+                                    <field name="so_email_gui" readonly="1"/>
+                                    <field name="so_email_thanh_cong" readonly="1"/>
+                                    <field name="so_email_that_bai" readonly="1"/>
+                                    <field name="ty_le_thanh_cong" widget="progressbar" readonly="1"/>
+                                </group>
+                                <group string="Tương tác">
+                                    <field name="so_email_mo" readonly="1"/>
+                                    <field name="so_click" readonly="1"/>
+                                    <field name="ty_le_mo" widget="progressbar" readonly="1"/>
+                                    <field name="ty_le_click" widget="progressbar" readonly="1"/>
+                                </group>
+                            </group>
+                        </page>
+
+                        <page string="Ghi chú">
+                            <field name="ghi_chu" placeholder="Ghi chú thêm..."/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="view_email_marketing_campaign_search" model="ir.ui.view">
+        <field name="name">email.marketing.campaign.search</field>
+        <field name="model">email.marketing.campaign</field>
+        <field name="arch" type="xml">
+            <search string="Tìm chiến dịch">
+                <field name="name"/>
+                <field name="ma_chien_dich"/>
+                <field name="email_template_id"/>
+                
+                <filter string="Nháp" name="draft" domain="[('trang_thai', '=', 'draft')]"/>
+                <filter string="Đã lên lịch" name="scheduled" domain="[('trang_thai', '=', 'scheduled')]"/>
+                <filter string="Đã gửi" name="sent" domain="[('trang_thai', '=', 'sent')]"/>
+                
+                <group expand="0" string="Group By">
+                    <filter string="Trạng thái" name="group_trang_thai" context="{'group_by': 'trang_thai'}"/>
+                    <filter string="Mẫu email" name="group_template" context="{'group_by': 'email_template_id'}"/>
+                    <filter string="Tháng" name="group_month" context="{'group_by': 'ngay_tao:month'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_email_marketing_campaign" model="ir.actions.act_window">
+        <field name="name">Email Marketing</field>
+        <field name="res_model">email.marketing.campaign</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{'search_default_draft': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Tạo chiến dịch Email Marketing mới
+            </p>
+            <p>
+                Gửi email hàng loạt cho khách hàng
+            </p>
+        </field>
+    </record>
+</odoo>

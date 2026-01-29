@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Tree View -->
+    <record id="view_email_marketing_template_tree" model="ir.ui.view">
+        <field name="name">email.marketing.template.tree</field>
+        <field name="model">email.marketing.template</field>
+        <field name="arch" type="xml">
+            <tree string="Mẫu Email Marketing"
+                  decoration-success="trang_thai=='active'"
+                  decoration-muted="trang_thai=='archived'">
+                <field name="ma_mau"/>
+                <field name="name"/>
+                <field name="loai_mau"/>
+                <field name="subject"/>
+                <field name="so_lan_su_dung"/>
+                <field name="trang_thai" widget="badge"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_email_marketing_template_form" model="ir.ui.view">
+        <field name="name">email.marketing.template.form</field>
+        <field name="model">email.marketing.template</field>
+        <field name="arch" type="xml">
+            <form string="Mẫu Email">
+                <header>
+                    <button name="action_activate" string="Kích hoạt" type="object" 
+                            class="btn-primary" attrs="{'invisible': [('trang_thai', '=', 'active')]}"/>
+                    <button name="action_test_email" string="Gửi test" type="object" icon="fa-paper-plane"/>
+                    <button name="action_archive_template" string="Lưu trữ" type="object"
+                            attrs="{'invisible': [('trang_thai', '=', 'archived')]}"/>
+                    <field name="trang_thai" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_view_campaigns" class="oe_stat_button" icon="fa-envelope-o" type="object">
+                            <field name="so_lan_su_dung" string="Sử dụng" widget="statinfo"/>
+                        </button>
+                    </div>
+                    
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="ma_mau"/>
+                            <field name="loai_mau"/>
+                        </group>
+                        <group>
+                            <field name="mo_ta"/>
+                        </group>
+                    </group>
+
+                    <group string="Nội dung Email">
+                        <field name="subject" placeholder="Tiêu đề email..."/>
+                        <field name="noi_dung_html" widget="html" 
+                               placeholder="Nội dung email HTML..."/>
+                    </group>
+
+                    <group>
+                        <p class="text-muted">
+                            <strong>Biến có thể sử dụng:</strong><br/>
+                            ${ten_khach_hang}, ${ma_khach_hang}, ${email}, ${dien_thoai}, ${dia_chi}, 
+                            ${website}, ${ngay_hom_nay}, ${thang_hien_tai}, ${nam_hien_tai}
+                        </p>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_email_marketing_template" model="ir.actions.act_window">
+        <field name="name">Mẫu Email</field>
+        <field name="res_model">email.marketing.template</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Tạo mẫu email mới
+            </p>
+        </field>
+    </record>
+</odoo>

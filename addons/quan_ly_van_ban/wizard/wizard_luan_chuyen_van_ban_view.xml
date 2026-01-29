@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Wizard Luân chuyển -->
+        <record id="view_wizard_luan_chuyen_van_ban_form" model="ir.ui.view">
+            <field name="name">wizard.luan.chuyen.van.ban.form</field>
+            <field name="model">wizard.luan.chuyen.van.ban</field>
+            <field name="arch" type="xml">
+                <form string="Luân chuyển văn bản">
+                    <sheet>
+                        <group>
+                            <field name="van_ban_di_id" invisible="1"/>
+                            <field name="van_ban_den_id" invisible="1"/>
+                        </group>
+                        
+                        <group>
+                            <field name="nguoi_nhan_ids" widget="many2many_tags" options="{'no_create': True}" placeholder="Chọn người nhận..."/>
+                        </group>
+                        
+                        <group>
+                            <group>
+                                <field name="han_xu_ly"/>
+                                <field name="muc_do_uu_tien" widget="priority"/>
+                            </group>
+                            <group>
+                                <field name="gui_email_thong_bao"/>
+                            </group>
+                        </group>
+                        
+                        <group string="Nội dung chuyển/Ý kiến">
+                            <field name="noi_dung_chuyen" nolabel="1" placeholder="Nhập nội dung chỉ đạo, yêu cầu xử lý..."/>
+                        </group>
+                    </sheet>
+                    <footer>
+                        <button name="action_luan_chuyen" string="Luân chuyển" type="object" class="btn-primary"/>
+                        <button string="Hủy" class="btn-default" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+    </data>
+</odoo>

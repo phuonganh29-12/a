@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Dashboard Kanban View -->
+    <record id="view_customer_dashboard_kanban" model="ir.ui.view">
+        <field name="name">customer.dashboard.kanban</field>
+        <field name="model">customer</field>
+        <field name="arch" type="xml">
+            <kanban class="o_kanban_dashboard">
+                <field name="id"/>
+                <field name="customer_name"/>
+                <field name="email"/>
+                <field name="phone"/>
+                <field name="loai_khach_hang_id"/>
+                <field name="total_sale_orders"/>
+                <field name="total_amount"/>
+                <field name="so_lan_cham_soc"/>
+                <field name="so_email_nhan"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click" style="border-left: 4px solid #875A7B;">
+                            <div class="o_kanban_card_header">
+                                <div class="o_kanban_card_header_title">
+                                    <div class="o_primary">
+                                        <strong><field name="customer_name"/></strong>
+                                    </div>
+                                    <div class="o_secondary" t-if="record.loai_khach_hang_id.raw_value">
+                                        <field name="loai_khach_hang_id"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="o_kanban_card_content">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <i class="fa fa-envelope"/> <field name="email"/>
+                                    </div>
+                                    <div class="col-6">
+                                        <i class="fa fa-phone"/> <field name="phone"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="o_kanban_card_footer">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <span class="badge badge-pill badge-primary">
+                                            <i class="fa fa-shopping-cart"/> <field name="total_sale_orders"/> đơn
+                                        </span>
+                                        <br/>
+                                        <span class="badge badge-pill badge-info" style="margin-top: 5px;">
+                                            <i class="fa fa-heart"/> <field name="so_lan_cham_soc"/> lần
+                                        </span>
+                                    </div>
+                                    <div class="col-6 text-right">
+                                        <span class="badge badge-pill badge-success">
+                                            <field name="total_amount" widget="monetary"/> VNĐ
+                                        </span>
+                                        <br/>
+                                        <span class="badge badge-pill badge-warning" style="margin-top: 5px;">
+                                            <i class="fa fa-envelope-o"/> <field name="so_email_nhan"/> email
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- Dashboard Action -->
+    <record id="action_customer_dashboard" model="ir.actions.act_window">
+        <field name="name">Dashboard Khách hàng</field>
+        <field name="res_model">customer</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Không có khách hàng
+            </p>
+        </field>
+    </record>
+
+    <!-- Statistics Dashboard using Graph &amp; Pivot -->
+    <record id="view_customer_graph" model="ir.ui.view">
+        <field name="name">customer.graph</field>
+        <field name="model">customer</field>
+        <field name="arch" type="xml">
+            <graph string="Thống kê khách hàng" type="bar">
+                <field name="loai_khach_hang_id" type="row"/>
+                <field name="total_amount" type="measure"/>
+            </graph>
+        </field>
+    </record>
+
+    <record id="view_customer_pivot" model="ir.ui.view">
+        <field name="name">customer.pivot</field>
+        <field name="model">customer</field>
+        <field name="arch" type="xml">
+            <pivot string="Phân tích khách hàng">
+                <field name="loai_khach_hang_id" type="row"/>
+                <field name="tinh_trang_khach_hang_id" type="col"/>
+                <field name="total_amount" type="measure"/>
+                <field name="total_sale_orders" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <!-- Complete Dashboard Action with all views -->
+    <record id="action_customer_analytics" model="ir.actions.act_window">
+        <field name="name">Phân tích Khách hàng</field>
+        <field name="res_model">customer</field>
+        <field name="view_mode">graph,pivot,tree</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Thống kê &amp; Phân tích khách hàng
+            </p>
+        </field>
+    </record>
+</odoo>

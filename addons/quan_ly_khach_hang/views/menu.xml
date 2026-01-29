@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <menuitem
+            id="menu_root"
+            name="QLKH"
+            sequence="0"
+        />
+        <menuitem name="Khách hàng" 
+            id="menu_customer" 
+            parent="menu_root" 
+            sequence="1"
+            action="action_customer"
+        />
+        
+        <!-- Dashboard -->
+        <menuitem name="Dashboard" 
+            id="menu_customer_dashboard" 
+            parent="menu_root" 
+            sequence="2"
+            action="action_customer_dashboard"
+        />
+        
+        <menuitem name="Cơ hội" 
+            id="menu_crm_lead" 
+            parent="menu_root" 
+            sequence="3"
+            action="action_crm_lead"
+        />
+            <menuitem name="Tương tác" 
+            id="menu_crm_interact" 
+            parent="menu_root" 
+            sequence="4"
+            action="action_crm_interact"
+        />
+        
+        <!-- Customer Care -->
+        <menuitem name="Chăm sóc KH" 
+            id="menu_customer_care" 
+            parent="menu_root" 
+            sequence="5"
+            action="action_customer_care"
+        />
+        
+            <menuitem name="Lịch sử giao dịch" 
+            id="menu_sale_order" 
+            parent="menu_root" 
+            sequence="6"
+            action="action_sale_order"
+        />
+            <menuitem name="Ghi chú" 
+            id="menu_note" 
+            parent="menu_root" 
+            sequence="7"
+            action="action_note"
+        />
+            <menuitem name="Phản hồi" 
+            id="menu_feedback" 
+            parent="menu_root" 
+            sequence="8"
+            action="action_feedback"
+        />
+            <menuitem name="Nhiệm vụ" 
+            id="menu_project_task" 
+            parent="menu_root" 
+            sequence="9"
+            action="action_project_task"
+        />
+        
+        <!-- Email Marketing Section -->
+        <menuitem name="Email Marketing" 
+            id="menu_email_marketing" 
+            parent="menu_root" 
+            sequence="10"/>
+        
+        <menuitem name="Chiến dịch" 
+            id="menu_email_campaign" 
+            parent="menu_email_marketing" 
+            sequence="1"
+            action="action_email_marketing_campaign"
+        />
+        
+        <menuitem name="Mẫu Email" 
+            id="menu_email_template" 
+            parent="menu_email_marketing" 
+            sequence="2"
+            action="action_email_marketing_template"
+        />
+        
+        <!-- Keep old marketing for backward compatibility -->
+        <menuitem name="Marketing (Old)" 
+            id="menu_marketing_campaign" 
+            parent="menu_root" 
+            sequence="11"
+            action="action_marketing_campaign"
+        />
+        
+        <!-- Analytics -->
+        <menuitem name="Phân tích" 
+            id="menu_customer_analytics" 
+            parent="menu_root" 
+            sequence="12"
+            action="action_customer_analytics"
+        />
+    </data>
+</odoo>

@@ -1,78 +1,169 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
+        <!-- Form View -->
         <record id="view_nhan_vien_form" model="ir.ui.view">
-            <field name="name">nhan_vien</field>
+            <field name="name">nhan_vien.form</field>
             <field name="model">nhan_vien</field>
             <field name="arch" type="xml">
                 <form>
+                    <header>
+                        <field name="trang_thai" widget="statusbar" statusbar_visible="probation,working"/>
+                    </header>
                     <sheet>
-                        <div class="oe_read_only" style="font-size:25px">Nhân viên</div>
-                        <group col="4" string="Thông tin chung">
-                            <field name="ho_ten_dem"/>
-                            <field name="ten"/>
-                            <field name="ho_va_ten"/>
-                            <field name="ma_dinh_danh"/>
-                            <field name="ngay_sinh"/>
-                            <field name="tuoi"/>
-                            <field name="so_nguoi_bang_tuoi"/>
-                            <field name="que_quan"/>
-                            <field name="email"/>
-                            <field name="anh" widget="image"/>
+                        <field name="image" widget="image" class="oe_avatar"/>
+                        
+                        <div class="oe_title">
+                            <h1>
+                                <field name="ho_ten" placeholder="Họ tên nhân viên"/>
+                            </h1>
+                            <h3>
+                                <field name="ma_dinh_danh" readonly="1"/>
+                            </h3>
+                        </div>
+                        
+                        <group>
+                            <group string="Thông tin cơ bản">
+                                <field name="ho_ten_dem"/>
+                                <field name="ten"/>
+                                <field name="ngay_sinh"/>
+                                <field name="tuoi"/>
+                                <field name="gioi_tinh"/>
+                                <field name="cccd"/>
+                            </group>
+                            <group string="Thông tin công việc">
+                                <field name="phong_ban_id"/>
+                                <field name="chuc_vu_id"/>
+                                <field name="ngay_vao_lam"/>
+                                <field name="so_nam_kinh_nghiem"/>
+                                <field name="ngay_nghi_viec" attrs="{'invisible': [('trang_thai', '!=', 'quit')]}"/>
+                            </group>
                         </group>
+                        
+                        <group>
+                            <group string="Thông tin liên hệ">
+                                <field name="email" widget="email"/>
+                                <field name="so_dien_thoai" widget="phone"/>
+                                <field name="que_quan"/>
+                                <field name="dia_chi_hien_tai"/>
+                            </group>
+                            <group string="Khác">
+                                <field name="active"/>
+                                <field name="ghi_chu"/>
+                            </group>
+                        </group>
+                        
                         <notebook>
-                            <page string="Danh sách lịch sử công tác">
-                                <field name="lich_su_cong_tac_ids"/>
-                            </page>
-                            <page string="Danh sách chứng chỉ bằng cấp">
-                                <field name="danh_sach_chung_chi_bang_cap_ids"/>
+                            <!-- <page string="Hợp đồng lao động">
+                                <field name="hop_dong_ids">
+                                    <tree decoration-success="trang_thai=='dang_hieu_luc'" 
+                                          decoration-warning="trang_thai=='sap_het_han'"
+                                          decoration-danger="trang_thai=='het_han'"
+                                          decoration-muted="trang_thai=='cham_dut'">
+                                        <field name="so_hop_dong"/>
+                                        <field name="loai_hop_dong"/>
+                                        <field name="ngay_bat_dau"/>
+                                        <field name="ngay_ket_thuc"/>
+                                        <field name="luong_co_ban"/>
+                                        <field name="trang_thai"/>
+                                    </tree>
+                                </field>
+                            </page> -->
+                            
+                            <page string="Lịch sử làm việc">
+                                <field name="lich_su_lam_viec_ids">
+                                    <tree>
+                                        <field name="phong_ban_id"/>
+                                        <field name="chuc_vu_id"/>
+                                        <field name="ngay_bat_dau"/>
+                                        <field name="ngay_ket_thuc"/>
+                                        <field name="loai_thay_doi"/>
+                                        <field name="dang_ap_dung"/>
+                                    </tree>
+                                </field>
                             </page>
                         </notebook>
                     </sheet>
-                    
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
                 </form>
             </field>
         </record>
 
+        <!-- Tree View -->
         <record id="view_nhan_vien_tree" model="ir.ui.view">
-            <field name="name">nhan_vien</field>
+            <field name="name">nhan_vien.tree</field>
             <field name="model">nhan_vien</field>
             <field name="arch" type="xml">
                 <tree>
                     <field name="ma_dinh_danh"/>
-                    <field name="ho_ten_dem"/>
-                    <field name="ten"/>
-                    <field name="ho_va_ten"/>
-                    <field name="ngay_sinh"/>
-                    <field name="tuoi"/>
-                    <field name="so_nguoi_bang_tuoi"/>
-                    <field name="que_quan"/>
+                    <field name="ho_ten"/>
+                    <field name="phong_ban_id"/>
+                    <field name="chuc_vu_id"/>
                     <field name="email"/>
+                    <field name="so_dien_thoai"/>
+                    <field name="trang_thai" decoration-success="trang_thai=='working'" 
+                           decoration-warning="trang_thai=='probation'" 
+                           decoration-danger="trang_thai=='quit'"/>
                 </tree>
             </field>
         </record>
 
-        <record model="ir.ui.view" id="nhan_vien_search">
+        <!-- Search View -->
+        <record id="view_nhan_vien_search" model="ir.ui.view">
+            <field name="name">nhan_vien.search</field>
             <field name="model">nhan_vien</field>
             <field name="arch" type="xml">
                 <search>
                     <field name="ma_dinh_danh"/>
-                    <field name="ho_va_ten"/>
-                    <field name="ngay_sinh"/>
-                    <field name="tuoi"/>
-                    <field name="que_quan"/>
+                    <field name="ho_ten"/>
+                    <field name="phong_ban_id"/>
+                    <field name="chuc_vu_id"/>
                     <field name="email"/>
+                    <field name="so_dien_thoai"/>
+                    
+                    <filter string="Đang làm việc" name="working" 
+                            domain="[('trang_thai', '=', 'working')]"/>
+                    <filter string="Thử việc" name="probation" 
+                            domain="[('trang_thai', '=', 'probation')]"/>
+                    <filter string="Đã nghỉ việc" name="quit" 
+                            domain="[('trang_thai', '=', 'quit')]"/>
+                    
+                    <separator/>
+                    <filter string="Hoạt động" name="active" 
+                            domain="[('active', '=', True)]"/>
+                    <filter string="Lưu trữ" name="inactive" 
+                            domain="[('active', '=', False)]"/>
+                    
+                    <group expand="0" string="Group By">
+                        <filter string="Phòng ban" name="group_phong_ban" 
+                                context="{'group_by':'phong_ban_id'}"/>
+                        <filter string="Chức vụ" name="group_chuc_vu" 
+                                context="{'group_by':'chuc_vu_id'}"/>
+                        <filter string="Trạng thái" name="group_trang_thai" 
+                                context="{'group_by':'trang_thai'}"/>
+                    </group>
                 </search>
             </field>
         </record>
 
+        <!-- Action -->
         <record id="action_nhan_vien" model="ir.actions.act_window">
             <field name="name">Nhân viên</field>
             <field name="res_model">nhan_vien</field>
             <field name="view_mode">tree,form</field>
-            <field name="search_view_id" ref = "nhan_vien_search"/>
+            <field name="search_view_id" ref="view_nhan_vien_search"/>
+            <field name="context">{'search_default_active': 1, 'search_default_working': 1}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Tạo nhân viên mới
+                </p>
+                <p>
+                    Click vào nút "Tạo" để thêm nhân viên mới vào hệ thống.
+                </p>
+            </field>
         </record>
     </data>
 </odoo>
-        
-    

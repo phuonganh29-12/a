@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Tree View -->
+        <record id="view_mau_van_ban_tree" model="ir.ui.view">
+            <field name="name">mau.van.ban.tree</field>
+            <field name="model">mau_van_ban</field>
+            <field name="arch" type="xml">
+                <tree string="Mẫu văn bản">
+                    <field name="sequence" widget="handle"/>
+                    <field name="ma_mau"/>
+                    <field name="name"/>
+                    <field name="loai_van_ban_id"/>
+                    <field name="trang_thai" decoration-success="trang_thai == 'active'" 
+                           decoration-muted="trang_thai == 'archived'" 
+                           decoration-info="trang_thai == 'draft'" widget="badge"/>
+                    <field name="so_lan_su_dung"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Form View -->
+        <record id="view_mau_van_ban_form" model="ir.ui.view">
+            <field name="name">mau.van.ban.form</field>
+            <field name="model">mau_van_ban</field>
+            <field name="arch" type="xml">
+                <form string="Mẫu văn bản">
+                    <header>
+                        <button name="action_tao_van_ban_tu_mau" type="object" string="Tạo văn bản từ mẫu" 
+                                class="oe_highlight" icon="fa-file-text-o"
+                                attrs="{'invisible': [('trang_thai', '!=', 'active')]}"/>
+                        <button name="action_set_active" type="object" string="Kích hoạt" 
+                                class="btn-success" 
+                                attrs="{'invisible': [('trang_thai', '=', 'active')]}"/>
+                        <button name="action_set_draft" type="object" string="Về nháp" 
+                                attrs="{'invisible': [('trang_thai', '!=', 'active')]}"/>
+                        <button name="action_archive" type="object" string="Lưu trữ" 
+                                attrs="{'invisible': [('trang_thai', '=', 'archived')]}"/>
+                        <field name="trang_thai" widget="statusbar" 
+                               statusbar_visible="draft,active,archived"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button name="action_tao_van_ban_tu_mau" type="object" 
+                                    class="oe_stat_button" icon="fa-file-text">
+                                <field name="so_lan_su_dung" widget="statinfo" string="Đã sử dụng"/>
+                            </button>
+                        </div>
+                        
+                        <group>
+                            <group>
+                                <field name="name" placeholder="Ví dụ: Mẫu công văn thông báo"/>
+                                <field name="ma_mau" placeholder="Ví dụ: MAU_CV_001"/>
+                                <field name="loai_van_ban_id"/>
+                                <field name="sequence"/>
+                            </group>
+                            <group>
+                                <field name="file_word_template" filename="file_word_template_name"/>
+                                <field name="file_word_template_name" invisible="1"/>
+                            </group>
+                        </group>
+                        
+                        <notebook>
+                            <page string="Nội dung mẫu">
+                                <field name="noi_dung_html" widget="html" 
+                                       options="{'style-inline': true}"
+                                       placeholder="Nhập nội dung mẫu văn bản. Sử dụng biến như ${ten_nhan_vien}, ${ten_khach_hang}, v.v."/>
+                            </page>
+                            
+                            <page string="Biến khả dụng">
+                                <group>
+                                    <field name="bien_kha_dung" widget="text" nolabel="1" readonly="1"/>
+                                </group>
+                                <separator string="Ví dụ sử dụng"/>
+                                <div class="alert alert-info" role="alert">
+                                    <p><strong>Cách sử dụng biến:</strong></p>
+                                    <ul>
+                                        <li>Nhập <code>${'{'}ten_nhan_vien{'}'}</code> để hiển thị tên nhân viên</li>
+                                        <li>Nhập <code>${'{'}ngay_hom_nay{'}'}</code> để hiển thị ngày hiện tại</li>
+                                        <li>Các biến sẽ tự động được thay thế khi tạo văn bản</li>
+                                    </ul>
+                                </div>
+                            </page>
+                            
+                            <page string="Hướng dẫn">
+                                <field name="huong_dan" widget="text" 
+                                       placeholder="Nhập hướng dẫn sử dụng mẫu này (không bắt buộc)"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <!-- Search View -->
+        <record id="view_mau_van_ban_search" model="ir.ui.view">
+            <field name="name">mau.van.ban.search</field>
+            <field name="model">mau_van_ban</field>
+            <field name="arch" type="xml">
+                <search string="Tìm kiếm mẫu văn bản">
+                    <field name="name"/>
+                    <field name="ma_mau"/>
+                    <field name="loai_van_ban_id"/>
+                    
+                    <filter string="Đang sử dụng" name="active" domain="[('trang_thai', '=', 'active')]"/>
+                    <filter string="Nháp" name="draft" domain="[('trang_thai', '=', 'draft')]"/>
+                    <filter string="Lưu trữ" name="archived" domain="[('trang_thai', '=', 'archived')]"/>
+                    
+                    <separator/>
+                    <filter string="Được dùng nhiều" name="most_used" 
+                            domain="[('so_lan_su_dung', '>', 0)]"/>
+                    
+                    <group expand="0" string="Nhóm theo">
+                        <filter string="Loại văn bản" name="group_loai" 
+                                context="{'group_by': 'loai_van_ban_id'}"/>
+                        <filter string="Trạng thái" name="group_status" 
+                                context="{'group_by': 'trang_thai'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!-- Action -->
+        <record id="action_mau_van_ban" model="ir.actions.act_window">
+            <field name="name">Mẫu văn bản</field>
+            <field name="res_model">mau_van_ban</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{'search_default_active': 1}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Tạo mẫu văn bản mới
+                </p>
+                <p>
+                    Mẫu văn bản giúp bạn tạo nhanh các văn bản thường dùng.<br/>
+                    Sử dụng biến để tự động điền thông tin.
+                </p>
+            </field>
+        </record>
+
+    </data>
+</odoo>

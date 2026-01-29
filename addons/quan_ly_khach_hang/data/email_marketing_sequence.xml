@@ -1,0 +1,21 @@
+<odoo>
+    <!-- Sequence cho Email Marketing Campaign -->
+    <record id="seq_email_marketing_campaign" model="ir.sequence">
+        <field name="name">Email Marketing Campaign Sequence</field>
+        <field name="code">email.marketing.campaign</field>
+        <field name="prefix">EMC-</field>
+        <field name="padding">5</field>
+        <field name="number_next">1</field>
+        <field name="number_increment">1</field>
+    </record>
+
+    <!-- Sequence cho Customer Care -->
+    <record id="seq_customer_care" model="ir.sequence">
+        <field name="name">Customer Care Sequence</field>
+        <field name="code">customer.care</field>
+        <field name="prefix">CS-</field>
+        <field name="padding">5</field>
+        <field name="number_next">1</field>
+        <field name="number_increment">1</field>
+    </record>
+</odoo>

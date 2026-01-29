@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Mẫu hợp đồng lao động thử việc -->
+    <record id="mau_hop_dong_thu_viec" model="mau_van_ban">
+        <field name="name">Hợp đồng lao động thử việc</field>
+        <field name="ma_mau">MAU_HDLD_TV_001</field>
+        <field name="loai_van_ban_id" ref="quan_ly_van_ban.loai_van_ban_hop_dong"/>
+        <field name="trang_thai">active</field>
+        <field name="noi_dung_html"><![CDATA[
+            <div style="font-family: 'Times New Roman', serif; font-size: 13pt; line-height: 1.5;">
+                <div style="text-align: center; margin-bottom: 20px;">
+                    <h2 style="margin: 5px 0;"><strong>CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</strong></h2>
+                    <h3 style="margin: 5px 0;"><strong><u>Độc lập - Tự do - Hạnh phúc</u></strong></h3>
+                </div>
+                
+                <div style="text-align: center; margin: 30px 0;">
+                    <h1 style="font-size: 16pt;"><strong>HỢP ĐỒNG LAO ĐỘNG THỬ VIỆC</strong></h1>
+                    <p><em>Số: ${so_van_ban}</em></p>
+                </div>
+
+                <p><strong>- Căn cứ</strong> Bộ luật Lao động số 45/2019/QH14;</p>
+                <p><strong>- Căn cứ</strong> Nhu cầu và khả năng tuyển dụng của Công ty;</p>
+
+                <p style="margin-top: 20px;">Hôm nay, ngày ${ngay_hom_nay}, chúng tôi gồm có:</p>
+
+                <h3><strong>BÊN A - BÊN TUYỂN DỤNG</strong></h3>
+                <p><strong>Tên công ty:</strong> ${ten_cong_ty}</p>
+                <p><strong>Địa chỉ:</strong> ${dia_chi_cong_ty}</p>
+                <p><strong>Điện thoại:</strong> ${dien_thoai_cong_ty}</p>
+                <p><strong>Người đại diện:</strong> ${nguoi_dai_dien}</p>
+
+                <h3><strong>BÊN B - NGƯỜI LAO ĐỘNG</strong></h3>
+                <p><strong>Họ và tên:</strong> ${ten_nhan_vien}</p>
+                <p><strong>Ngày sinh:</strong> ${ngay_sinh_nhan_vien}</p>
+                <p><strong>Giới tính:</strong> ${gioi_tinh_nhan_vien}</p>
+                <p><strong>CCCD/CMND:</strong> ${cccd_nhan_vien}</p>
+                <p><strong>Địa chỉ thường trú:</strong> ${dia_chi_nhan_vien}</p>
+                <p><strong>Điện thoại:</strong> ${dien_thoai_nhan_vien}</p>
+
+                <p style="margin-top: 20px;">Hai bên thỏa thuận ký kết Hợp đồng lao động thử việc với các điều khoản sau:</p>
+
+                <h3><strong>ĐIỀU 1: THỜI HẠN HỢP ĐỒNG</strong></h3>
+                <p>Hợp đồng có hiệu lực từ ngày <strong>${ngay_bat_dau}</strong> đến hết ngày <strong>${ngay_ket_thuc}</strong>.</p>
+                <p>Thời gian thử việc: <strong>02 tháng</strong></p>
+
+                <h3><strong>ĐIỀU 2: CÔNG VIỆC</strong></h3>
+                <p><strong>Vị trí:</strong> ${vi_tri_cong_viec}</p>
+                <p><strong>Phòng ban:</strong> ${phong_ban}</p>
+                <p><strong>Địa điểm làm việc:</strong> ${dia_diem_lam_viec}</p>
+                <p><strong>Mô tả công việc:</strong> ${mo_ta_cong_viec}</p>
+
+                <h3><strong>ĐIỀU 3: CHẾ ĐỘ LÀM VIỆC</strong></h3>
+                <p><strong>Giờ làm việc:</strong> ${gio_lam_viec} giờ/tuần</p>
+                <p><strong>Thời gian:</strong> Từ thứ Hai đến thứ Sáu</p>
+                <p><strong>Ca làm việc:</strong> 8h00 - 17h00 (nghỉ trưa 1 giờ)</p>
+
+                <h3><strong>ĐIỀU 4: LƯƠNG VÀ CHẾ ĐỘ</strong></h3>
+                <p><strong>Lương cơ bản:</strong> ${luong_co_ban} ${don_vi_tien_te}/tháng</p>
+                <p><strong>Phụ cấp ăn trưa:</strong> ${phu_cap_an_trua} ${don_vi_tien_te}/tháng</p>
+                <p><strong>Phụ cấp xăng xe:</strong> ${phu_cap_xang_xe} ${don_vi_tien_te}/tháng</p>
+                <p><strong>Phụ cấp điện thoại:</strong> ${phu_cap_dien_thoai} ${don_vi_tien_te}/tháng</p>
+                <p><strong>Hình thức trả lương:</strong> Chuyển khoản vào ngày 05 hàng tháng</p>
+
+                <h3><strong>ĐIỀU 5: BẢO HIỂM</strong></h3>
+                <p>Trong thời gian thử việc, Bên B chưa được tham gia BHXH, BHYT, BHTN theo quy định.</p>
+
+                <h3><strong>ĐIỀU 6: QUYỀN VÀ NGHĨA VỤ CỦA HAI BÊN</strong></h3>
+                <p><strong>6.1. Quyền và nghĩa vụ của Bên A:</strong></p>
+                <ul>
+                    <li>Tạo điều kiện làm việc và hướng dẫn Bên B thực hiện công việc</li>
+                    <li>Trả lương đầy đủ, đúng hạn cho Bên B</li>
+                    <li>Đánh giá năng lực làm việc của Bên B</li>
+                    <li>Có quyền đơn phương chấm dứt hợp đồng nếu Bên B không đáp ứng yêu cầu</li>
+                </ul>
+
+                <p><strong>6.2. Quyền và nghĩa vụ của Bên B:</strong></p>
+                <ul>
+                    <li>Thực hiện đúng và đầy đủ công việc được giao</li>
+                    <li>Chấp hành nội quy, quy định của công ty</li>
+                    <li>Bảo mật thông tin của công ty</li>
+                    <li>Nhận lương và các chế độ theo thỏa thuận</li>
+                </ul>
+
+                <h3><strong>ĐIỀU 7: CHẤM DỨT HỢP ĐỒNG</strong></h3>
+                <p>Hai bên có quyền đơn phương chấm dứt hợp đồng thử việc bằng cách báo trước cho bên kia <strong>03 ngày làm việc</strong>.</p>
+
+                <h3><strong>ĐIỀU 8: ĐIỀU KHOẢN CHUNG</strong></h3>
+                <p>Hợp đồng được lập thành 02 bản, mỗi bên giữ 01 bản có giá trị như nhau.</p>
+                <p>Hợp đồng có hiệu lực kể từ ngày ký.</p>
+
+                <div style="margin-top: 40px; display: flex; justify-content: space-between;">
+                    <div style="text-align: center; width: 45%;">
+                        <p><strong>ĐẠI DIỆN BÊN A</strong></p>
+                        <p><em>(Ký, ghi rõ họ tên)</em></p>
+                        <br/><br/><br/>
+                    </div>
+                    <div style="text-align: center; width: 45%;">
+                        <p><strong>BÊN B</strong></p>
+                        <p><em>(Ký, ghi rõ họ tên)</em></p>
+                        <br/><br/><br/>
+                    </div>
+                </div>
+            </div>
+        ]]></field>
+    </record>
+
+    <!-- Mẫu hợp đồng lao động xác định thời hạn -->
+    <record id="mau_hop_dong_xac_dinh" model="mau_van_ban">
+        <field name="name">Hợp đồng lao động xác định thời hạn</field>
+        <field name="ma_mau">MAU_HDLD_XD_001</field>
+        <field name="loai_van_ban_id" ref="quan_ly_van_ban.loai_van_ban_hop_dong"/>
+        <field name="trang_thai">active</field>
+        <field name="noi_dung_html"><![CDATA[
+            <div style="font-family: 'Times New Roman', serif; font-size: 13pt; line-height: 1.5;">
+                <div style="text-align: center; margin-bottom: 20px;">
+                    <h2 style="margin: 5px 0;"><strong>CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</strong></h2>
+                    <h3 style="margin: 5px 0;"><strong><u>Độc lập - Tự do - Hạnh phúc</u></strong></h3>
+                </div>
+                
+                <div style="text-align: center; margin: 30px 0;">
+                    <h1 style="font-size: 16pt;"><strong>HỢP ĐỒNG LAO ĐỘNG</strong></h1>
+                    <p><strong>(XÁC ĐỊNH THỜI HẠN)</strong></p>
+                    <p><em>Số: ${so_van_ban}</em></p>
+                </div>
+
+                <p><strong>- Căn cứ</strong> Bộ luật Lao động số 45/2019/QH14;</p>
+                <p><strong>- Căn cứ</strong> Quy chế quản lý lao động của Công ty;</p>
+
+                <p style="margin-top: 20px;">Hôm nay, ngày ${ngay_hom_nay}, chúng tôi gồm có:</p>
+
+                <h3><strong>BÊN A - NGƯỜI SỬ DỤNG LAO ĐỘNG</strong></h3>
+                <p><strong>Tên công ty:</strong> ${ten_cong_ty}</p>
+                <p><strong>Địa chỉ:</strong> ${dia_chi_cong_ty}</p>
+                <p><strong>Điện thoại:</strong> ${dien_thoai_cong_ty}</p>
+                <p><strong>Người đại diện:</strong> ${nguoi_dai_dien}</p>
+                <p><strong>Chức vụ:</strong> Giám đốc</p>
+
+                <h3><strong>BÊN B - NGƯỜI LAO ĐỘNG</strong></h3>
+                <p><strong>Họ và tên:</strong> ${ten_nhan_vien}</p>
+                <p><strong>Ngày sinh:</strong> ${ngay_sinh_nhan_vien}</p>
+                <p><strong>Giới tính:</strong> ${gioi_tinh_nhan_vien}</p>
+                <p><strong>CCCD/CMND:</strong> ${cccd_nhan_vien}</p>
+                <p><strong>Địa chỉ thường trú:</strong> ${dia_chi_nhan_vien}</p>
+                <p><strong>Điện thoại:</strong> ${dien_thoai_nhan_vien}</p>
+                <p><strong>Email:</strong> ${email_nhan_vien}</p>
+
+                <p style="margin-top: 20px;">Hai bên thỏa thuận ký kết Hợp đồng lao động xác định thời hạn với các điều khoản sau:</p>
+
+                <h3><strong>ĐIỀU 1: THỜI HẠN HỢP ĐỒNG</strong></h3>
+                <p>Hợp đồng có hiệu lực từ ngày <strong>${ngay_bat_dau}</strong> đến hết ngày <strong>${ngay_ket_thuc}</strong>.</p>
+                <p>Thời hạn: <strong>${thoi_han_thang} tháng</strong></p>
+
+                <h3><strong>ĐIỀU 2: CÔNG VIỆC VÀ ĐIỀU KIỆN LÀM VIỆC</strong></h3>
+                <p><strong>Vị trí/Chức danh:</strong> ${vi_tri_cong_viec}</p>
+                <p><strong>Phòng ban:</strong> ${phong_ban}</p>
+                <p><strong>Địa điểm làm việc:</strong> ${dia_diem_lam_viec}</p>
+                <p><strong>Mô tả công việc:</strong></p>
+                <p>${mo_ta_cong_viec}</p>
+
+                <h3><strong>ĐIỀU 3: CHẾ ĐỘ LÀM VIỆC VÀ NGHỈ NGƠI</strong></h3>
+                <p><strong>Thời giờ làm việc:</strong> ${gio_lam_viec} giờ/tuần (8 giờ/ngày)</p>
+                <p><strong>Ngày làm việc:</strong> Từ thứ Hai đến thứ Sáu</p>
+                <p><strong>Ca làm việc:</strong> 8h00 - 12h00 và 13h00 - 17h00</p>
+                <p><strong>Nghỉ phép năm:</strong> ${ngay_nghi_phep} ngày/năm</p>
+
+                <h3><strong>ĐIỀU 4: TIỀN LƯƠNG VÀ CÁC KHOẢN PHỤ CẤP</strong></h3>
+                <p><strong>Lương cơ bản:</strong> ${luong_co_ban} ${don_vi_tien_te}/tháng</p>
+                <p><strong>Phụ cấp ăn trưa:</strong> ${phu_cap_an_trua} ${don_vi_tien_te}/tháng</p>
+                <p><strong>Phụ cấp xăng xe:</strong> ${phu_cap_xang_xe} ${don_vi_tien_te}/tháng</p>
+                <p><strong>Phụ cấp điện thoại:</strong> ${phu_cap_dien_thoai} ${don_vi_tien_te}/tháng</p>
+                <p><strong>Phụ cấp khác:</strong> ${phu_cap_khac} ${don_vi_tien_te}/tháng</p>
+                <p><strong>Tổng thu nhập:</strong> ${tong_thu_nhap} ${don_vi_tien_te}/tháng</p>
+                <p><strong>Hình thức trả lương:</strong> Chuyển khoản vào tài khoản ngân hàng vào ngày 05 hàng tháng</p>
+
+                <h3><strong>ĐIỀU 5: BẢO HIỂM XÃ HỘI, BẢO HIỂM Y TẾ</strong></h3>
+                <p>Bên A đóng bảo hiểm xã hội, bảo hiểm y tế, bảo hiểm thất nghiệp cho Bên B theo quy định của pháp luật.</p>
+                <p><strong>Mức đóng BHXH:</strong> Theo lương cơ bản</p>
+                <p><strong>Tỷ lệ đóng:</strong></p>
+                <ul>
+                    <li>BHXH: Công ty 17.5%, Người lao động 8%</li>
+                    <li>BHYT: Công ty 3%, Người lao động 1.5%</li>
+                    <li>BHTN: Công ty 1%, Người lao động 1%</li>
+                </ul>
+
+                <h3><strong>ĐIỀU 6: ĐÀO TẠO VÀ BỒI DƯỠNG</strong></h3>
+                <p>Bên A cam kết tạo điều kiện đào tạo, bồi dưỡng nâng cao trình độ chuyên môn, nghiệp vụ cho Bên B.</p>
+
+                <h3><strong>ĐIỀU 7: QUYỀN VÀ NGHĨA VỤ CỦA BÊN A</strong></h3>
+                <ul>
+                    <li>Bố trí công việc phù hợp với năng lực của Bên B</li>
+                    <li>Trả lương và các chế độ đầy đủ, đúng hạn</li>
+                    <li>Đảm bảo điều kiện làm việc an toàn, vệ sinh</li>
+                    <li>Tham gia BHXH, BHYT, BHTN cho Bên B</li>
+                    <li>Yêu cầu Bên B thực hiện đúng công việc và chấp hành nội quy</li>
+                </ul>
+
+                <h3><strong>ĐIỀU 8: QUYỀN VÀ NGHĨA VỤ CỦA BÊN B</strong></h3>
+                <ul>
+                    <li>Thực hiện đúng và đầy đủ công việc được giao</li>
+                    <li>Chấp hành nội quy lao động và quy định của công ty</li>
+                    <li>Bảo mật thông tin, tài liệu của công ty</li>
+                    <li>Nhận lương và các chế độ theo thỏa thuận</li>
+                    <li>Được hưởng các quyền lợi theo pháp luật lao động</li>
+                </ul>
+
+                <h3><strong>ĐIỀU 9: CHẤM DỨT HỢP ĐỒNG</strong></h3>
+                <p>Hợp đồng chấm dứt trong các trường hợp:</p>
+                <ul>
+                    <li>Hết hạn hợp đồng</li>
+                    <li>Hai bên thỏa thuận chấm dứt hợp đồng</li>
+                    <li>Các trường hợp khác theo quy định pháp luật</li>
+                </ul>
+                <p>Khi một bên muốn chấm dứt hợp đồng trước thời hạn phải báo trước cho bên kia ít nhất <strong>30 ngày</strong>.</p>
+
+                <h3><strong>ĐIỀU 10: ĐIỀU KHOẢN CHUNG</strong></h3>
+                <p>Hợp đồng được lập thành 02 bản có giá trị pháp lý như nhau, mỗi bên giữ 01 bản.</p>
+                <p>Hợp đồng có hiệu lực kể từ ngày ký.</p>
+                <p>Mọi tranh chấp phát sinh sẽ được hai bên giải quyết bằng thương lượng. Nếu không thỏa thuận được sẽ giải quyết theo pháp luật.</p>
+
+                <div style="margin-top: 40px; display: flex; justify-content: space-between;">
+                    <div style="text-align: center; width: 45%;">
+                        <p><strong>ĐẠI DIỆN BÊN A</strong></p>
+                        <p><em>(Ký, đóng dấu)</em></p>
+                        <br/><br/><br/>
+                    </div>
+                    <div style="text-align: center; width: 45%;">
+                        <p><strong>BÊN B</strong></p>
+                        <p><em>(Ký, ghi rõ họ tên)</em></p>
+                        <br/><br/><br/>
+                    </div>
+                </div>
+            </div>
+        ]]></field>
+    </record>
+</odoo>

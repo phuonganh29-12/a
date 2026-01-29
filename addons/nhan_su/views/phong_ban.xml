@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Form View -->
+        <record id="view_phong_ban_form" model="ir.ui.view">
+            <field name="name">phong_ban.form</field>
+            <field name="model">phong_ban</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="ten_phong_ban" placeholder="Tên phòng ban"/>
+                            </h1>
+                            <h3>
+                                <field name="ma_phong_ban" placeholder="Mã phòng ban"/>
+                            </h3>
+                        </div>
+                        
+                        <group>
+                            <group string="Thông tin cơ bản">
+                                <field name="parent_id"/>
+                                <field name="truong_phong_id"/>
+                                <field name="ngay_thanh_lap"/>
+                                <field name="so_nhan_vien"/>
+                            </group>
+                            <group string="Khác">
+                                <field name="active"/>
+                                <field name="mo_ta"/>
+                            </group>
+                        </group>
+                        
+                        <notebook>
+                            <page string="Nhân viên">
+                                <field name="nhan_vien_ids">
+                                    <tree>
+                                        <field name="ma_dinh_danh"/>
+                                        <field name="ho_ten"/>
+                                        <field name="chuc_vu_id"/>
+                                        <field name="email"/>
+                                        <field name="trang_thai"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Phòng ban con">
+                                <field name="child_ids">
+                                    <tree>
+                                        <field name="ma_phong_ban"/>
+                                        <field name="ten_phong_ban"/>
+                                        <field name="truong_phong_id"/>
+                                        <field name="so_nhan_vien"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Tree View -->
+        <record id="view_phong_ban_tree" model="ir.ui.view">
+            <field name="name">phong_ban.tree</field>
+            <field name="model">phong_ban</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="ma_phong_ban"/>
+                    <field name="ten_phong_ban"/>
+                    <field name="parent_id"/>
+                    <field name="truong_phong_id"/>
+                    <field name="so_nhan_vien"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Search View -->
+        <record id="view_phong_ban_search" model="ir.ui.view">
+            <field name="name">phong_ban.search</field>
+            <field name="model">phong_ban</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="ma_phong_ban"/>
+                    <field name="ten_phong_ban"/>
+                    <field name="truong_phong_id"/>
+                    
+                    <filter string="Hoạt động" name="active" 
+                            domain="[('active', '=', True)]"/>
+                    
+                    <group expand="0" string="Group By">
+                        <filter string="Phòng ban cha" name="group_parent" 
+                                context="{'group_by':'parent_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!-- Action -->
+        <record id="action_phong_ban" model="ir.actions.act_window">
+            <field name="name">Phòng ban</field>
+            <field name="res_model">phong_ban</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_phong_ban_search"/>
+            <field name="context">{'search_default_active': 1}</field>
+        </record>
+    </data>
+</odoo>
+        
+    

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Chuỗi tự động cho văn bản đi -->
+        <record id="seq_van_ban_di" model="ir.sequence">
+            <field name="name">Văn bản đi</field>
+            <field name="code">van_ban_di</field>
+            <field name="prefix">VBĐ-%(year)s-</field>
+            <field name="padding">4</field>
+            <field name="number_increment">1</field>
+            <field name="number_next">1</field>
+            <field name="implementation">standard</field>
+        </record>
+
+        <!-- Chuỗi tự động cho văn bản đến -->
+        <record id="seq_van_ban_den" model="ir.sequence">
+            <field name="name">Văn bản đến</field>
+            <field name="code">van_ban_den</field>
+            <field name="prefix">VBĐến-%(year)s-</field>
+            <field name="padding">4</field>
+            <field name="number_increment">1</field>
+            <field name="number_next">1</field>
+            <field name="implementation">standard</field>
+        </record>
+
+        <!-- Chuỗi tự động cho luân chuyển văn bản -->
+        <record id="seq_luan_chuyen_van_ban" model="ir.sequence">
+            <field name="name">Luân chuyển văn bản</field>
+            <field name="code">luan.chuyen.van.ban</field>
+            <field name="prefix">LC-%(year)s-</field>
+            <field name="padding">4</field>
+            <field name="number_increment">1</field>
+            <field name="number_next">1</field>
+            <field name="implementation">standard</field>
+        </record>
+
+        <!-- Chuỗi tự động cho loại văn bản -->
+        <record id="seq_loai_van_ban" model="ir.sequence">
+            <field name="name">Loại văn bản</field>
+            <field name="code">loai_van_ban</field>
+            <field name="prefix">LVB</field>
+            <field name="padding">3</field>
+            <field name="number_increment">1</field>
+            <field name="number_next">1</field>
+            <field name="implementation">standard</field>
+        </record>
+    </data>
+</odoo>

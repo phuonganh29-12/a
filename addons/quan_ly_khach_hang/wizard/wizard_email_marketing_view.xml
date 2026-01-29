@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Wizard Send Email Marketing -->
+    <record id="view_wizard_send_email_marketing_form" model="ir.ui.view">
+        <field name="name">wizard.send.email.marketing.form</field>
+        <field name="model">wizard.send.email.marketing</field>
+        <field name="arch" type="xml">
+            <form string="Gửi Email Marketing">
+                <group>
+                    <field name="campaign_id" readonly="1" invisible="1"/>
+                    <field name="email_template_id" readonly="1"/>
+                    <field name="tong_khach_hang" readonly="1"/>
+                    <field name="gui_ngay"/>
+                    <field name="gui_test"/>
+                </group>
+                <group>
+                    <field name="xac_nhan"/>
+                    <p class="text-warning" attrs="{'invisible': [('xac_nhan', '=', True)]}">
+                        ⚠️ Vui lòng xác nhận trước khi gửi email
+                    </p>
+                </group>
+                <footer>
+                    <button string="Gửi Email" name="action_send" type="object" class="btn-primary"/>
+                    <button string="Hủy" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- Wizard Test Email Template -->
+    <record id="view_wizard_test_email_template_form" model="ir.ui.view">
+        <field name="name">wizard.test.email.template.form</field>
+        <field name="model">wizard.test.email.template</field>
+        <field name="arch" type="xml">
+            <form string="Gửi Email Test">
+                <group>
+                    <field name="template_id" readonly="1" invisible="1"/>
+                    <field name="email_test"/>
+                    <field name="customer_test_id" placeholder="Chọn khách hàng mẫu (tùy chọn)"/>
+                </group>
+                <footer>
+                    <button string="Gửi Test" name="action_send_test" type="object" class="btn-primary"/>
+                    <button string="Hủy" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

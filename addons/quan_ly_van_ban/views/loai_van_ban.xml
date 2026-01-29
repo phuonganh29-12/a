@@ -1,49 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
+        <!-- Form View -->
         <record id="view_loai_van_ban_form" model="ir.ui.view">
-            <field name="name">loai_van_ban</field>
+            <field name="name">loai_van_ban.form</field>
             <field name="model">loai_van_ban</field>
             <field name="arch" type="xml">
                 <form>
                     <sheet>
-                        <div class="oe_read_only" style="font-size:25px">Loại văn bản</div>
-                        <group col="4" string="Thông tin chung">
-                            <field name="ma_loai_van_ban"/>
-                            <field name="ten_loai_van_ban"/>
+                        <div class="oe_button_box" name="button_box">
+                            <button class="oe_stat_button" icon="fa-arrow-up">
+                                <field name="so_van_ban_di" widget="statinfo" string="Văn bản đi"/>
+                            </button>
+                            <button class="oe_stat_button" icon="fa-arrow-down">
+                                <field name="so_van_ban_den" widget="statinfo" string="Văn bản đến"/>
+                            </button>
+                            <button class="oe_stat_button" icon="fa-files-o">
+                                <field name="tong_van_ban" widget="statinfo" string="Tổng văn bản"/>
+                            </button>
+                        </div>
+                        
+                        <div class="oe_title">
+                            <label for="ten_loai_van_ban" class="oe_edit_only"/>
+                            <h1>
+                                <field name="ten_loai_van_ban" placeholder="Tên loại văn bản..."/>
+                            </h1>
+                            <h3>
+                                <field name="ma_loai_van_ban" readonly="1"/>
+                            </h3>
+                        </div>
+                        
+                        <group>
+                            <group>
+                                <field name="huong_van_ban"/>
+                                <field name="sequence"/>
+                                <field name="color" widget="color"/>
+                            </group>
+                            <group>
+                                <field name="active"/>
+                            </group>
+                        </group>
+                        
+                        <group>
+                            <field name="mo_ta" placeholder="Mô tả chi tiết..."/>
                         </group>
                     </sheet>
-                    
                 </form>
             </field>
         </record>
 
+        <!-- Tree View -->
         <record id="view_loai_van_ban_tree" model="ir.ui.view">
-            <field name="name">loai_van_ban</field>
+            <field name="name">loai_van_ban.tree</field>
             <field name="model">loai_van_ban</field>
             <field name="arch" type="xml">
-                <tree>
+                <tree default_order="sequence,ma_loai_van_ban">
+                    <field name="sequence" widget="handle"/>
                     <field name="ma_loai_van_ban"/>
                     <field name="ten_loai_van_ban"/>
+                    <field name="huong_van_ban"/>
+                    <field name="so_van_ban_di"/>
+                    <field name="so_van_ban_den"/>
+                    <field name="tong_van_ban"/>
+                    <field name="active" widget="boolean_toggle"/>
                 </tree>
             </field>
         </record>
 
-        <record model="ir.ui.view" id="loai_van_ban_search">
+        <!-- Search View -->
+        <record model="ir.ui.view" id="view_loai_van_ban_search">
+            <field name="name">loai_van_ban.search</field>
             <field name="model">loai_van_ban</field>
             <field name="arch" type="xml">
                 <search>
                     <field name="ma_loai_van_ban"/>
                     <field name="ten_loai_van_ban"/>
+                    
+                    <filter string="Văn bản đi" name="van_ban_di" domain="[('huong_van_ban', 'in', ['outgoing', 'both'])]"/>
+                    <filter string="Văn bản đến" name="van_ban_den" domain="[('huong_van_ban', 'in', ['incoming', 'both'])]"/>
+                    
+                    <separator/>
+                    <filter string="Hoạt động" name="active" domain="[('active', '=', True)]"/>
+                    
+                    <group expand="0" string="Group By">
+                        <filter string="Hướng văn bản" name="group_huong" context="{'group_by':'huong_van_ban'}"/>
+                    </group>
                 </search>
             </field>
         </record>
 
+        <!-- Action -->
         <record id="action_loai_van_ban" model="ir.actions.act_window">
             <field name="name">Loại văn bản</field>
             <field name="res_model">loai_van_ban</field>
             <field name="view_mode">tree,form</field>
-            <field name="search_view_id" ref = "loai_van_ban_search"/>
+            <field name="search_view_id" ref="view_loai_van_ban_search"/>
+            <field name="context">{'search_default_active': 1}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Tạo loại văn bản mới
+                </p>
+                <p>
+                    Thiết lập các loại văn bản như: Công văn, Thông báo, Quyết định, Hợp đồng...
+                </p>
+            </field>
         </record>
     </data>
 </odoo>

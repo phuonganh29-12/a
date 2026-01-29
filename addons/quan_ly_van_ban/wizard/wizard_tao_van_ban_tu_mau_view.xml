@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Wizard Form View -->
+        <record id="view_wizard_tao_van_ban_tu_mau_form" model="ir.ui.view">
+            <field name="name">wizard.tao.van.ban.tu.mau.form</field>
+            <field name="model">wizard.tao.van.ban.tu.mau</field>
+            <field name="arch" type="xml">
+                <form string="Tạo văn bản từ mẫu">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="mau_van_ban_id" options="{'no_create': True}"/>
+                                <field name="loai_van_ban_id" readonly="1"/>
+                                <field name="trich_yeu" placeholder="Nhập trích yếu văn bản"/>
+                            </group>
+                            <group>
+                                <field name="so_van_ban" placeholder="Để trống để tự động tạo"/>
+                                <field name="ngay_van_ban"/>
+                                <field name="xuat_file_word"/>
+                            </group>
+                        </group>
+                        
+                        <group string="Đối tượng liên quan (tùy chọn)">
+                            <group>
+                                <field name="nhan_vien_id"/>
+                            </group>
+                            <group>
+                                <field name="customer_id"/>
+                            </group>
+                        </group>
+                        
+                        <notebook>
+                            <page string="Preview nội dung">
+                                <field name="noi_dung_preview" widget="html" readonly="1" nolabel="1"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <footer>
+                        <button name="action_tao_van_ban" string="Tạo văn bản" type="object" 
+                                class="btn-primary"/>
+                        <button name="action_preview" string="Làm mới Preview" type="object" 
+                                class="btn-secondary"/>
+                        <button string="Hủy" class="btn-default" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+    </data>
+</odoo>

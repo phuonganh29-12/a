@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Form View for Wizard Chấm dứt -->
+    <record id="view_wizard_cham_dut_hop_dong_form" model="ir.ui.view">
+        <field name="name">wizard.cham.dut.hop.dong.form</field>
+        <field name="model">wizard.cham.dut.hop.dong</field>
+        <field name="arch" type="xml">
+            <form string="Chấm dứt hợp đồng lao động">
+                <group>
+                    <field name="hop_dong_id" readonly="1" invisible="1"/>
+                    <field name="ngay_cham_dut"/>
+                    <field name="ly_do_cham_dut" placeholder="Nhập lý do chấm dứt hợp đồng..."/>
+                </group>
+                <footer>
+                    <button string="Xác nhận" name="action_xac_nhan_cham_dut" type="object" class="btn-primary"/>
+                    <button string="Hủy" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- Form View for Wizard Gia hạn -->
+    <record id="view_wizard_gia_han_hop_dong_form" model="ir.ui.view">
+        <field name="name">wizard.gia.han.hop.dong.form</field>
+        <field name="model">wizard.gia.han.hop.dong</field>
+        <field name="arch" type="xml">
+            <form string="Gia hạn hợp đồng lao động">
+                <group>
+                    <field name="hop_dong_goc_id" readonly="1" invisible="1"/>
+                    <group>
+                        <field name="loai_hop_dong"/>
+                        <field name="ngay_bat_dau"/>
+                        <field name="ngay_ket_thuc"/>
+                    </group>
+                    <group>
+                        <field name="luong_co_ban"/>
+                        <field name="phu_cap_an_trua"/>
+                        <field name="phu_cap_xang_xe"/>
+                        <field name="phu_cap_dien_thoai"/>
+                        <field name="phu_cap_khac"/>
+                    </group>
+                </group>
+                <group>
+                    <field name="ghi_chu" placeholder="Ghi chú về hợp đồng mới..."/>
+                </group>
+                <footer>
+                    <button string="Tạo hợp đồng mới" name="action_xac_nhan_gia_han" type="object" class="btn-primary"/>
+                    <button string="Hủy" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

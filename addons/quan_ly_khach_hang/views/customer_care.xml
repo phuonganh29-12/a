@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Tree View -->
+    <record id="view_customer_care_tree" model="ir.ui.view">
+        <field name="name">customer.care.tree</field>
+        <field name="model">customer.care</field>
+        <field name="arch" type="xml">
+            <tree string="Chăm sóc khách hàng"
+                  decoration-info="trang_thai=='planned'"
+                  decoration-warning="trang_thai=='in_progress'"
+                  decoration-success="trang_thai=='completed'"
+                  decoration-muted="trang_thai=='cancelled'">
+                <field name="ma_cham_soc"/>
+                <field name="customer_id"/>
+                <field name="loai_cham_soc"/>
+                <field name="tieu_de"/>
+                <field name="nhan_vien_id"/>
+                <field name="ngay_du_kien"/>
+                <field name="ngay_cham_soc"/>
+                <field name="ket_qua" optional="hide"/>
+                <field name="trang_thai" widget="badge"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_customer_care_form" model="ir.ui.view">
+        <field name="name">customer.care.form</field>
+        <field name="model">customer.care</field>
+        <field name="arch" type="xml">
+            <form string="Chăm sóc khách hàng">
+                <header>
+                    <button name="action_start" string="Bắt đầu" type="object" 
+                            class="btn-primary" attrs="{'invisible': [('trang_thai', '!=', 'planned')]}"/>
+                    <button name="action_complete" string="Hoàn thành" type="object" 
+                            class="oe_highlight" attrs="{'invisible': [('trang_thai', 'not in', ['planned', 'in_progress'])]}"/>
+                    <button name="action_cancel" string="Hủy" type="object"
+                            attrs="{'invisible': [('trang_thai', 'in', ['completed', 'cancelled'])]}"/>
+                    <button name="action_view_customer" string="Xem KH" type="object" icon="fa-user"/>
+                    <field name="trang_thai" widget="statusbar" 
+                           statusbar_visible="planned,in_progress,completed"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="tieu_de" placeholder="Tiêu đề..."/></h1>
+                        <h3><field name="ma_cham_soc" readonly="1"/></h3>
+                    </div>
+
+                    <group>
+                        <group string="Thông tin">
+                            <field name="customer_id" options="{'no_create': True}"/>
+                            <field name="loai_cham_soc"/>
+                            <field name="nhan_vien_id"/>
+                        </group>
+                        <group string="Thời gian">
+                            <field name="ngay_du_kien"/>
+                            <field name="ngay_cham_soc" attrs="{'invisible': [('trang_thai', '!=', 'completed')]}"/>
+                        </group>
+                    </group>
+
+                    <group>
+                        <field name="mo_ta" placeholder="Mô tả ngắn gọn..."/>
+                    </group>
+
+                    <notebook>
+                        <page string="Nội dung">
+                            <field name="noi_dung" widget="html" placeholder="Nội dung chi tiết..."/>
+                        </page>
+
+                        <page string="Kết quả" attrs="{'invisible': [('trang_thai', '!=', 'completed')]}">
+                            <group>
+                                <group>
+                                    <field name="ket_qua"/>
+                                    <field name="chi_phi"/>
+                                    <field name="don_vi_tien_te"/>
+                                </group>
+                                <group>
+                                    <field name="can_hanh_dong_tiep"/>
+                                    <field name="ngay_hanh_dong_tiep" attrs="{'invisible': [('can_hanh_dong_tiep', '=', False)]}"/>
+                                </group>
+                            </group>
+                            <group>
+                                <field name="phan_hoi_khach_hang" placeholder="Phản hồi của khách hàng..."/>
+                                <field name="hanh_dong_tiep_theo" placeholder="Hành động tiếp theo cần làm..." 
+                                       attrs="{'invisible': [('can_hanh_dong_tiep', '=', False)]}"/>
+                            </group>
+                        </page>
+
+                        <page string="File đính kèm">
+                            <field name="attachment_ids" widget="many2many_binary"/>
+                        </page>
+
+                        <page string="Ghi chú">
+                            <field name="ghi_chu" placeholder="Ghi chú thêm..."/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="view_customer_care_search" model="ir.ui.view">
+        <field name="name">customer.care.search</field>
+        <field name="model">customer.care</field>
+        <field name="arch" type="xml">
+            <search string="Tìm chăm sóc KH">
+                <field name="ma_cham_soc"/>
+                <field name="customer_id"/>
+                <field name="tieu_de"/>
+                <field name="nhan_vien_id"/>
+                
+                <filter string="Đã lên kế hoạch" name="planned" domain="[('trang_thai', '=', 'planned')]"/>
+                <filter string="Đang thực hiện" name="in_progress" domain="[('trang_thai', '=', 'in_progress')]"/>
+                <filter string="Đã hoàn thành" name="completed" domain="[('trang_thai', '=', 'completed')]"/>
+                
+                <separator/>
+                <filter string="Của tôi" name="my_care" domain="[('nhan_vien_id', '=', uid)]"/>
+                <filter string="Hôm nay" name="today" domain="[('ngay_du_kien', '=', context_today().strftime('%Y-%m-%d'))]"/>
+                <filter string="Tuần này" name="this_week" 
+                        domain="[('ngay_du_kien', '>=', context_today().strftime('%Y-%m-%d')),
+                                ('ngay_du_kien', '&lt;=', (context_today() + relativedelta(weeks=1)).strftime('%Y-%m-%d'))]"/>
+                
+                <group expand="0" string="Group By">
+                    <filter string="Khách hàng" name="group_customer" context="{'group_by': 'customer_id'}"/>
+                    <filter string="Loại chăm sóc" name="group_loai" context="{'group_by': 'loai_cham_soc'}"/>
+                    <filter string="Người thực hiện" name="group_nhan_vien" context="{'group_by': 'nhan_vien_id'}"/>
+                    <filter string="Trạng thái" name="group_trang_thai" context="{'group_by': 'trang_thai'}"/>
+                    <filter string="Ngày" name="group_ngay" context="{'group_by': 'ngay_du_kien:day'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_customer_care" model="ir.actions.act_window">
+        <field name="name">Chăm sóc khách hàng</field>
+        <field name="res_model">customer.care</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{'search_default_my_care': 1, 'search_default_planned': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Tạo hoạt động chăm sóc khách hàng mới
+            </p>
+        </field>
+    </record>
+</odoo>

@@ -1,48 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
+        <!-- Form View -->
         <record id="view_chuc_vu_form" model="ir.ui.view">
-            <field name="name">chuc_vu</field>
+            <field name="name">chuc_vu.form</field>
             <field name="model">chuc_vu</field>
             <field name="arch" type="xml">
                 <form>
                     <sheet>
-                        <div class="oe_read_only" style="font-size:25px">Chức vụ</div>
-                        <group col="4" string="Thông tin chung">
-                            <field name="ma_chuc_vu"/>
-                            <field name="ten_chuc_vu"/>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="ten_chuc_vu" placeholder="Tên chức vụ"/>
+                            </h1>
+                            <h3>
+                                <field name="ma_chuc_vu" placeholder="Mã chức vụ"/>
+                            </h3>
+                        </div>
+                        
+                        <group>
+                            <group string="Thông tin">
+                                <field name="cap_bac"/>
+                                <field name="so_nhan_vien"/>
+                            </group>
+                            <group>
+                                <field name="active"/>
+                            </group>
                         </group>
+                        
+                        <group string="Mô tả công việc">
+                            <field name="mo_ta" placeholder="Mô tả chi tiết công việc và trách nhiệm..." nolabel="1"/>
+                        </group>
+                        
+                        <notebook>
+                            <page string="Nhân viên">
+                                <field name="nhan_vien_ids">
+                                    <tree>
+                                        <field name="ma_dinh_danh"/>
+                                        <field name="ho_ten"/>
+                                        <field name="phong_ban_id"/>
+                                        <field name="email"/>
+                                        <field name="trang_thai"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
                     </sheet>
                 </form>
             </field>
         </record>
 
+        <!-- Tree View -->
         <record id="view_chuc_vu_tree" model="ir.ui.view">
-            <field name="name">chuc_vu</field>
+            <field name="name">chuc_vu.tree</field>
             <field name="model">chuc_vu</field>
             <field name="arch" type="xml">
                 <tree>
                     <field name="ma_chuc_vu"/>
                     <field name="ten_chuc_vu"/>
+                    <field name="cap_bac"/>
+                    <field name="so_nhan_vien"/>
                 </tree>
             </field>
         </record>
 
-        <record model="ir.ui.view" id="chuc_vu_search">
+        <!-- Search View -->
+        <record id="view_chuc_vu_search" model="ir.ui.view">
+            <field name="name">chuc_vu.search</field>
             <field name="model">chuc_vu</field>
             <field name="arch" type="xml">
                 <search>
                     <field name="ma_chuc_vu"/>
                     <field name="ten_chuc_vu"/>
+                    
+                    <filter string="Hoạt động" name="active" 
+                            domain="[('active', '=', True)]"/>
+                    
+                    <group expand="0" string="Group By">
+                        <filter string="Cấp bậc" name="group_cap_bac" 
+                                context="{'group_by':'cap_bac'}"/>
+                    </group>
                 </search>
             </field>
         </record>
 
+        <!-- Action -->
         <record id="action_chuc_vu" model="ir.actions.act_window">
             <field name="name">Chức vụ</field>
             <field name="res_model">chuc_vu</field>
             <field name="view_mode">tree,form</field>
-            <field name="search_view_id" ref = "chuc_vu_search"/>
+            <field name="search_view_id" ref="view_chuc_vu_search"/>
+            <field name="context">{'search_default_active': 1}</field>
         </record>
     </data>
 </odoo>

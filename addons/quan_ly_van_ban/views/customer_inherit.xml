@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Inherit Customer Form View to add Văn bản tab and statistics -->
+        <record id="view_customer_form_inherit_van_ban" model="ir.ui.view">
+            <field name="name">customer.form.inherit.van.ban</field>
+            <field name="model">customer</field>
+            <field name="inherit_id" ref="quan_ly_khach_hang.view_customer_form"/>
+            <field name="arch" type="xml">
+                <!-- Add van_ban_count to statistics -->
+                <xpath expr="//field[@name='total_interactions']" position="before">
+                    <field name="van_ban_count" readonly="1"/>
+                </xpath>
+                
+                <!-- Add Văn bản tab -->
+                <xpath expr="//notebook" position="inside">
+                    <page string="Văn bản">
+                        <group>
+                            <button name="%(quan_ly_van_ban.action_van_ban_di)d" 
+                                    type="action" 
+                                    string="Tạo văn bản mới"
+                                    class="btn-primary"
+                                    context="{'default_customer_id': active_id}"
+                                    icon="fa-plus"/>
+                        </group>
+                        <field name="van_ban_ids" readonly="1"/>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

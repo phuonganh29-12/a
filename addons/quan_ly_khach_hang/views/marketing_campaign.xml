@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Form View -->
+        <record id="view_marketing_campaign_form" model="ir.ui.view">
+            <field name="name">marketing_campaign</field>
+            <field name="model">marketing_campaign</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <div class="oe_read_only" style="font-size:25px">Chiến dịch marketing</div>
+                        <group col="4" string="Thông tin chung">
+                            <field name="marketing_campaign_id"/>
+                            <field name="marketing_campaign_name"/>
+                            <field name="start_date"/>
+                            <field name="end_date"/>
+                            <field name="customer_ids" widget="many2many_tags"/>
+                            <field name="employee_id" widget="many2one"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Tree View -->
+        <record id="view_marketing_campaign_tree" model="ir.ui.view">
+            <field name="name">marketing_campaign</field>
+            <field name="model">marketing_campaign</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="marketing_campaign_id"/>
+                    <field name="marketing_campaign_name"/>
+                    <field name="start_date"/>
+                    <field name="end_date"/>
+                    <field name="customer_ids" widget="many2many_tags"/>
+                    <field name="employee_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Search View -->
+        <record model="ir.ui.view" id="marketing_campaign_search">
+            <field name="model">marketing_campaign</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="marketing_campaign_id"/>
+                    <field name="marketing_campaign_name"/>
+                    <field name="start_date"/>
+                    <field name="end_date"/>
+                    <field name="employee_id"/>
+                    <group expand="1" string="Group By">
+                        <filter string="Nhân viên phụ trách" name="group_by_employee" context="{'group_by': 'employee_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!-- Action -->
+        <record id="action_marketing_campaign" model="ir.actions.act_window">
+            <field name="name">Chiến dịch marketing</field>
+            <field name="res_model">marketing_campaign</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="marketing_campaign_search"/>
+        </record>
+
+        <!-- Menu -->
+        <menuitem id="menu_marketing_campaign_root" name="Quản lý Marketing"/>
+        <menuitem id="menu_marketing_campaign" name="Chiến dịch Marketing" parent="menu_marketing_campaign_root" action="action_marketing_campaign" sequence="10"/>
+    </data>
+</odoo>
