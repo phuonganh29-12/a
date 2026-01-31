@@ -1,34 +1,3 @@
-# HỆ THỐNG QUẢN LÝ NHÂN SỰ, VĂN BẢN, KHÁCH HÀNG
-
-## 1. Giới thiệu hệ thống
-Hệ thống giúp doanh nghiệp quản lý toàn diện nhân sự, văn bản và khách hàng trên một nền tảng duy nhất. Mục tiêu là tự động hóa quy trình, giảm thao tác thủ công, tăng hiệu quả và minh bạch dữ liệu.
-
-## 2. Tổng quan hệ thống
-- Các module chính: Quản lý Nhân sự, Quản lý Văn bản, Quản lý Khách hàng, Chấm công & Tính lương, Chatbot hỗ trợ.
-- Dữ liệu tập trung, liên thông giữa các module, dễ dàng mở rộng và tích hợp.
-- Đối tượng sử dụng: Ban lãnh đạo, phòng nhân sự, kế toán, nhân viên, bộ phận kinh doanh, quản lý văn bản.
-
-## 3. Chức năng các module
-
-### 3.1. Quản lý Nhân sự (HR)
-- Lưu trữ hồ sơ nhân viên, hợp đồng, phòng ban, chức vụ.
-- Quản lý quá trình công tác, thay đổi lương, nghỉ phép, chế độ.
-
-### 3.2. Quản lý Văn bản
-- Lưu trữ, phân loại, tìm kiếm văn bản nội bộ, công văn.
-- Quản lý quy trình phê duyệt, ban hành, phân quyền truy cập.
-
-### 3.3. Quản lý Khách hàng (CRM)
-- Quản lý thông tin khách hàng, lịch sử giao dịch, hợp đồng.
-- Theo dõi cơ hội bán hàng, chăm sóc khách hàng, báo cáo doanh số.
-
-### 3.4. Chấm công & Tính lương
-- Quản lý ca làm việc, ghi nhận chấm công, xử lý dữ liệu công.
-- Tính lương tự động, lập bảng lương, tra cứu phiếu lương cá nhân.
-
-### 3.5. Chatbot hỗ trợ
-- Trả lời câu hỏi về nhân sự, lương, quy định công ty.
-- Tra cứu thông tin cá nhân, hỗ trợ thao tác tự phục vụ, nhắc nhở công việc.
 <h2 align="center">
     <a href="https://dainam.edu.vn/vi/khoa-cong-nghe-thong-tin">
     🎓 Faculty of Information Technology (DaiNam University)
@@ -56,7 +25,7 @@ Hệ thống giúp doanh nghiệp quản lý toàn diện nhân sự, văn bản
 
 Hệ thống **Quản lý Nhân Sự, Khách Hàng & Văn Bản** được xây dựng trên nền tảng **Odoo 17**, giúp doanh nghiệp số hóa toàn diện quy trình quản trị nhân sự, chăm sóc khách hàng và lưu trữ, xử lý văn bản nội bộ.
 
-### Thông tin kỹ thuật (theo code thực tế)
+### Thông tin kỹ thuật
 
 #### 1. Quản lý Nhân Sự (HRM)
 - **Chấm công, hiện diện:**
