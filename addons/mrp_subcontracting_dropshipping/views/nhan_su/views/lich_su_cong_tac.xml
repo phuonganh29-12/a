@@ -1,0 +1,21 @@
+<odoo>
+    <record id="view_lsct_tree" model="ir.ui.view">
+        <field name="name">lich.su.cong.tac.tree</field>
+        <field name="model">lich_su_cong_tac</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="nhan_vien_id"/>
+                <field name="phong_ban"/>
+                <field name="chuc_vu"/>
+                <field name="tu_ngay"/>
+                <field name="den_ngay"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_lsct" model="ir.actions.act_window">
+        <field name="name">Lịch sử công tác</field>
+        <field name="res_model">lich_su_cong_tac</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

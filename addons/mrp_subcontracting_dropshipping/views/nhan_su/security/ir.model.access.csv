@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_nhan_vien,nhan_vien.nhan_vien,model_nhan_vien,base.group_user,1,1,1,1
+access_phong_ban,access_phong_ban,model_phong_ban,base.group_user,1,1,1,1
+access_chuc_vu,access_chuc_vu,model_chuc_vu,base.group_user,1,1,1,1
+access_lsct,access_lsct,model_lich_su_cong_tac,base.group_user,1,1,1,1
+access_chung_chi,access_chung_chi,model_chung_chi,base.group_user,1,1,1,1
+access_cham_cong,access_cham_cong,model_cham_cong,base.group_user,1,1,1,1

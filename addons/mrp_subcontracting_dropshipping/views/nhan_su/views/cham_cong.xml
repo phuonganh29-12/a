@@ -1,0 +1,20 @@
+<odoo>
+    <record id="view_cham_cong_tree" model="ir.ui.view">
+        <field name="name">cham.cong.tree</field>
+        <field name="model">cham_cong</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="nhan_vien_id"/>
+                <field name="ngay"/>
+                <field name="gio_vao"/>
+                <field name="gio_ra"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_cham_cong" model="ir.actions.act_window">
+        <field name="name">Chấm công</field>
+        <field name="res_model">cham_cong</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>
