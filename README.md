@@ -23,30 +23,37 @@
 
 ## 📖 1. Giới thiệu
 
-Hệ thống **Quản lý Nhân Sự, Khách Hàng & Văn Bản** được xây dựng trên nền tảng **Odoo 17**, giúp doanh nghiệp số hóa toàn diện quy trình quản trị nhân sự, chăm sóc khách hàng và lưu trữ, xử lý văn bản nội bộ.
+Hệ thống **Quản lý Nhân Sự (QLNS), Khách Hàng & Văn Bản** được xây dựng trên nền tảng **Odoo 17**, giúp doanh nghiệp số hóa toàn diện quy trình quản trị nhân sự: quản lý nhân viên, lịch sử làm việc, chức vụ, phòng ban; đồng thời chăm sóc khách hàng và lưu trữ, xử lý văn bản nội bộ.
 
 ### Thông tin kỹ thuật
 
-#### 1. Quản lý Nhân Sự (HRM)
-**Hồ sơ nhân viên, phòng ban, hợp đồng:**
+#### 1. Quản lý Nhân Sự (QLNS)
+**Quản lý nhân viên, lịch sử làm việc, chức vụ, phòng ban:**
     - Model: `Employee` ([addons/hr_presence/models/hr_employee.py](addons/hr_presence/models/hr_employee.py))
-    - Quản lý thông tin nhân viên, phòng ban, hợp đồng lao động
+    - Quản lý thông tin nhân viên, lịch sử làm việc, chức vụ, phòng ban
 
-#### 2. Quản lý Khách Hàng (CRM)
-- **Thông tin khách hàng, giao dịch:**
+#### 2. Quản lý Khách Hàng (QLKH/CRM)
+- **Chức năng chính:**
+    - Quản lý thông tin khách hàng
+    - Dashboard tổng quan
+    - Quản lý cơ hội (opportunity)
+    - Quản lý tương tác, chăm sóc khách hàng
+    - Theo dõi lịch sử giao dịch, ghi chú, phản hồi
+    - Quản lý nhiệm vụ liên quan đến khách hàng
+    - Email Marketing, Marketing (Old)
+    - Phân tích dữ liệu, báo cáo
     - Model: `Partner` ([addons/crm/models/res_partner.py](addons/crm/models/res_partner.py))
     - Model: `crm.lead` ([addons/crm/models/crm_lead.py](addons/crm/models/crm_lead.py))
-    - Các hàm: `default_get`, `action_view_opportunity`, `_compute_opportunity_count`, ...
-- **Báo cáo, chăm sóc khách hàng:**
-    - Quản lý lead, opportunity, báo cáo, phân công, chăm sóc khách hàng
 
 #### 3. Quản lý Văn Bản (Document)
-- **Lưu trữ, tìm kiếm, phân loại:**
-    - Model: `IrAttachment` ([addons/attachment_indexation/models/ir_attachment.py](addons/attachment_indexation/models/ir_attachment.py))
-    - Các hàm: `_index_docx`, `_index_pptx`, `_index_xlsx`, `_index_opendoc`, `_index_pdf`, `_index`
-    - Hỗ trợ tìm kiếm nội dung file docx, xlsx, pptx, pdf, opendoc
+- **Chức năng chính:**
+    - Quản lý văn bản đi
+    - Quản lý văn bản đến
+    - Quản lý loại văn bản
+    - Quản lý mẫu văn bản
+    - Quản lý, theo dõi luân chuyển văn bản
 
-> **Lưu ý:** README này đã được đối chiếu với code thực tế (cập nhật ngày 2026-01-29). Các tính năng, model, và hàm nêu trên đều có trong source code.
+
 
 <div align="center">
 
@@ -70,14 +77,14 @@ Hệ thống **Quản lý Nhân Sự, Khách Hàng & Văn Bản** được xây 
 - ✅ Dễ dàng mở rộng, tích hợp các module khác
 
 ### 📌 3 Module Cốt Lõi:
-1. **Quản lý Nhân Sự (HRM)** - Hồ sơ, hợp đồng, phòng ban
+1. **Quản lý Nhân Sự (QLNS)** - Quản lý nhân viên, lịch sử làm việc, chức vụ, phòng ban
 2. **Quản lý Khách Hàng (CRM)** - Thông tin khách hàng, lịch sử giao dịch, chăm sóc khách hàng
-3. **Quản lý Văn Bản (Document)** - Lưu trữ, phân loại, tìm kiếm, phê duyệt, chia sẻ văn bản
+3. **Quản lý Văn Bản (Document)** - Văn bản đi, văn bản đến, loại văn bản, mẫu văn bản, luân chuyển văn bản
 
 ## 🎨 2. Các Tính Năng Chi Tiết
 
-### 1️⃣ Quản lý Nhân Sự (HRM Module) 👥
-**Quản lý toàn bộ thông tin nhân viên, phòng ban, hợp đồng**
+### 1️⃣ Quản lý Nhân Sự (QLNS Module) 👥
+**Quản lý toàn bộ thông tin nhân viên, lịch sử làm việc, chức vụ, phòng ban**
 
 <div align="center">
     <img src="images/nhansu.jpg" alt="Giao diện danh sách nhân sự" width="90%"/>
@@ -85,13 +92,14 @@ Hệ thống **Quản lý Nhân Sự, Khách Hàng & Văn Bản** được xây 
 
 | Tính năng | Mô tả |
 |-----------|-------|
-| 📋 Hồ sơ nhân viên | Thông tin cá nhân, liên lạc, giấy tờ |
+| 📋 Quản lý nhân viên | Thông tin cá nhân, liên lạc, giấy tờ |
+| 🕓 Lịch sử làm việc | Theo dõi quá trình công tác, thay đổi vị trí |
+| 🏷️ Quản lý chức vụ | Tạo, chỉnh sửa, phân loại chức vụ |
 | 🏢 Quản lý phòng ban | Tạo, chỉnh sửa phòng ban, cấu trúc tổ chức |
-| 📜 Hợp đồng lao động | Tạo, theo dõi, quản lý hợp đồng |
-| 🔒 Phân quyền | Phân quyền theo phòng ban, vai trò |
+| 🔒 Phân quyền | Phân quyền theo phòng ban, chức vụ |
 
-### 2️⃣ Quản lý Khách Hàng (CRM Module) 🤝
-**Quản lý thông tin khách hàng, lịch sử giao dịch, chăm sóc khách hàng**
+### 2️⃣ Quản lý Khách Hàng (QLKH/CRM Module) 🤝
+**Quản lý khách hàng, cơ hội, tương tác, chăm sóc, lịch sử giao dịch, nhiệm vụ, marketing, phân tích**
 
 <div align="center">
     <img src="images/crm.jpg" alt="Giao diện CRM" width="90%"/>
@@ -99,15 +107,21 @@ Hệ thống **Quản lý Nhân Sự, Khách Hàng & Văn Bản** được xây 
 
 | Tính năng | Mô tả |
 |-----------|-------|
-| 👤 Thông tin khách hàng | Lưu trữ, cập nhật thông tin khách hàng |
-| 📞 Lịch sử liên hệ | Ghi nhận lịch sử gọi điện, email, gặp mặt |
-| 📝 Quản lý giao dịch | Theo dõi báo giá, hợp đồng, đơn hàng |
-| 📊 Báo cáo khách hàng | Thống kê, phân loại khách hàng |
-| 💬 Chăm sóc khách hàng | Quản lý lịch sử CSKH, nhắc nhở tự động |
-| 🔍 Tìm kiếm nhanh | Tìm kiếm khách hàng theo nhiều tiêu chí |
+| 👤 Quản lý khách hàng | Lưu trữ, cập nhật thông tin khách hàng |
+| 📊 Dashboard | Tổng quan dữ liệu, chỉ số khách hàng |
+| 💼 Cơ hội | Quản lý cơ hội bán hàng, tiềm năng |
+| 🤝 Tương tác | Ghi nhận, quản lý các hoạt động tương tác với khách hàng |
+| 💬 Chăm sóc KH | Quản lý lịch sử chăm sóc, nhắc nhở tự động |
+| 🕓 Lịch sử giao dịch | Theo dõi các giao dịch, hợp đồng, đơn hàng |
+| 📝 Ghi chú | Lưu trữ ghi chú liên quan đến khách hàng |
+| 📨 Phản hồi | Quản lý phản hồi, ý kiến khách hàng |
+| ✅ Nhiệm vụ | Quản lý nhiệm vụ liên quan đến khách hàng |
+| 📧 Email Marketing | Gửi email marketing, quản lý chiến dịch |
+| 📢 Marketing (Old) | Quản lý các chiến dịch marketing cũ |
+| 📈 Phân tích | Phân tích dữ liệu, báo cáo khách hàng |
 
 ### 3️⃣ Quản lý Văn Bản (Document Module) 📄
-**Lưu trữ, phân loại, tìm kiếm, phê duyệt, chia sẻ văn bản nội bộ**
+**Quản lý văn bản đi, văn bản đến, loại văn bản, mẫu văn bản, luân chuyển văn bản**
 
 <div align="center">
     <img src="images/vanban.jpg" alt="Giao diện quản lý văn bản" width="90%"/>
@@ -115,12 +129,11 @@ Hệ thống **Quản lý Nhân Sự, Khách Hàng & Văn Bản** được xây 
 
 | Tính năng | Mô tả |
 |-----------|-------|
-| 📂 Lưu trữ văn bản | Lưu trữ file, scan, tài liệu điện tử |
-| 🗂️ Phân loại | Phân loại theo loại văn bản, phòng ban |
-| 🔍 Tìm kiếm | Tìm kiếm nhanh theo tên, nội dung, tag |
-| ✅ Phê duyệt | Quy trình phê duyệt, ký số, lưu vết |
-| 🔗 Chia sẻ nội bộ | Chia sẻ văn bản cho phòng ban, cá nhân |
-| 🕒 Lịch sử thay đổi | Theo dõi chỉnh sửa, truy cập |
+| 📤 Văn bản đi | Quản lý, lưu trữ, theo dõi văn bản đi |
+| 📥 Văn bản đến | Quản lý, lưu trữ, theo dõi văn bản đến |
+| 🗂️ Loại văn bản | Phân loại, quản lý các loại văn bản |
+| 📄 Mẫu văn bản | Quản lý, sử dụng các mẫu văn bản chuẩn |
+| 🔄 Luân chuyển văn bản | Theo dõi, quản lý quá trình luân chuyển văn bản |
 
 ## 🛠️ 3. Công Nghệ & Công Cụ
 
@@ -234,78 +247,72 @@ python odoo-bin.py -c odoo.conf
 
 ## 📚 5. Hướng Dẫn Sử Dụng
 
-### 5.1 Module Quản Lý Nhân Sự (HRM)
+### 5.1 Module Quản Lý Nhân Sự (QLNS)
 ```
-Menu: Nhân sự → Danh sách nhân viên
+Menu: Nhân sự → Quản lý nhân viên, lịch sử làm việc, chức vụ, phòng ban
 Chức năng:
 - Quản lý thông tin nhân viên
-- Quản lý phòng ban, hợp đồng
-- Phân quyền theo phòng ban
+- Quản lý lịch sử làm việc, chức vụ
+- Quản lý phòng ban
+- Phân quyền theo phòng ban, chức vụ
 ```
 
-### 5.2 Module Quản Lý Khách Hàng (CRM)
+### 5.2 Module Quản Lý Khách Hàng (QLKH/CRM)
 ```
-Menu: Khách hàng → Danh sách khách hàng
+Menu: QLKH → Khách hàng, Dashboard, Cơ hội, Tương tác, Chăm sóc KH, Lịch sử giao dịch, Ghi chú, Phản hồi, Nhiệm vụ, Email Marketing, Marketing (Old), Phân tích
 Chức năng:
-- Lưu trữ, cập nhật thông tin khách hàng
-- Quản lý lịch sử giao dịch, liên hệ
-- Báo giá, hợp đồng, chăm sóc khách hàng
-- Tìm kiếm, phân loại khách hàng
+- Quản lý thông tin khách hàng
+- Dashboard tổng quan
+- Quản lý cơ hội, tương tác, chăm sóc khách hàng
+- Theo dõi lịch sử giao dịch, ghi chú, phản hồi
+- Quản lý nhiệm vụ, email marketing, phân tích dữ liệu
 ```
 
 ### 5.3 Module Quản Lý Văn Bản (Document)
 ```
-Menu: Văn bản → Danh sách văn bản
+Menu: Quản lý văn bản → Văn bản đi, Văn bản đến, Loại văn bản, Mẫu văn bản, Luân chuyển văn bản
 Chức năng:
-- Lưu trữ, phân loại, tìm kiếm văn bản
-- Quy trình phê duyệt, ký số
-- Chia sẻ nội bộ, phân quyền truy cập
-- Theo dõi lịch sử chỉnh sửa
+- Quản lý văn bản đi
+- Quản lý văn bản đến
+- Quản lý loại văn bản
+- Quản lý mẫu văn bản
+- Quản lý, theo dõi luân chuyển văn bản
 ```
 
 ## 🎨 6. Các Tính Năng Nổi Bật
 
-### ⚡ Số Hóa & Tự Động Hóa
-```
-- Quản lý tập trung toàn bộ dữ liệu nhân sự, khách hàng, văn bản
-- Tự động hóa quy trình phê duyệt, nhắc nhở, báo cáo
-- Tìm kiếm, truy xuất dữ liệu nhanh chóng
-```
-
-### 📊 Báo Cáo & Thống Kê
-```
-- Dashboard tổng quan nhân sự, khách hàng, văn bản
-- Báo cáo theo phòng ban, thời gian, loại văn bản
-- Xuất Excel, PDF chuyên nghiệp
-```
-
-### 🔒 Bảo Mật & Phân Quyền
-```
-- Phân quyền chi tiết theo vai trò, phòng ban
-- Lưu vết truy cập, chỉnh sửa
-- Mã hóa dữ liệu nhạy cảm
-```
+- Quản lý tập trung toàn bộ dữ liệu nhân sự, khách hàng, văn bản trên một hệ thống duy nhất
+- Giao diện trực quan, dễ sử dụng, phù hợp nhiều đối tượng
+- Phân quyền rõ ràng theo phòng ban, chức vụ, vai trò
+- Dễ dàng mở rộng, tích hợp thêm các module nghiệp vụ khác
+- Quản lý nhân viên, lịch sử làm việc, chức vụ, phòng ban
+- Quản lý khách hàng, dashboard, cơ hội, tương tác, chăm sóc, lịch sử giao dịch, ghi chú, phản hồi, nhiệm vụ, email marketing, marketing cũ, phân tích
+- Quản lý văn bản đi, văn bản đến, loại văn bản, mẫu văn bản, luân chuyển văn bản
 
 ## 💡 7. Use Cases & Ví Dụ
 
 ### 📌 Quản Lý Nhân Sự
 ```
-- Tuyển dụng, lưu trữ hồ sơ, hợp đồng
-- Báo cáo nhân sự theo phòng ban
+- Quản lý, lưu trữ thông tin nhân viên
+- Theo dõi lịch sử làm việc, thay đổi chức vụ
+- Báo cáo nhân sự theo phòng ban, chức vụ
 ```
 
 ### 📌 Quản Lý Khách Hàng
 ```
-- Lưu trữ thông tin, lịch sử giao dịch
+- Quản lý thông tin khách hàng, cơ hội, tương tác
 - Chăm sóc khách hàng, nhắc nhở tự động
-- Báo cáo khách hàng tiềm năng
+- Theo dõi lịch sử giao dịch, ghi chú, phản hồi
+- Quản lý nhiệm vụ, email marketing, phân tích dữ liệu
 ```
 
 ### 📌 Quản Lý Văn Bản
 ```
-- Lưu trữ, tìm kiếm, phân loại văn bản nội bộ
-- Quy trình phê duyệt, ký số, chia sẻ nội bộ
-- Theo dõi lịch sử chỉnh sửa, truy cập
+- Quản lý văn bản đi
+- Quản lý văn bản đến
+- Quản lý loại văn bản
+- Quản lý mẫu văn bản
+- Quản lý, theo dõi luân chuyển văn bản
 ```
 
 ## 📞 8. Support & Liên Hệ
