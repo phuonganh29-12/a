@@ -28,14 +28,9 @@ Hệ thống **Quản lý Nhân Sự, Khách Hàng & Văn Bản** được xây 
 ### Thông tin kỹ thuật
 
 #### 1. Quản lý Nhân Sự (HRM)
-- **Chấm công, hiện diện:**
-    - Model: `HrAttendance` ([addons/hr_attendance/models/hr_attendance.py](addons/hr_attendance/models/hr_attendance.py))
+**Hồ sơ nhân viên, phòng ban, hợp đồng:**
     - Model: `Employee` ([addons/hr_presence/models/hr_employee.py](addons/hr_presence/models/hr_employee.py))
-    - Các hàm: `check_in`, `check_out`, `_compute_presence_state`, `action_set_present`, `action_set_absent`, `action_open_leave_request`, ...
-- **Phòng ban, hợp đồng, nhân viên:**
-    - Trường liên kết employee, department, contract trong các model trên
-- **Tính lương, nghỉ phép:**
-    - Dữ liệu chấm công và hiện diện phục vụ tính lương, nghỉ phép
+    - Quản lý thông tin nhân viên, phòng ban, hợp đồng lao động
 
 #### 2. Quản lý Khách Hàng (CRM)
 - **Thông tin khách hàng, giao dịch:**
@@ -75,14 +70,14 @@ Hệ thống **Quản lý Nhân Sự, Khách Hàng & Văn Bản** được xây 
 - ✅ Dễ dàng mở rộng, tích hợp các module khác
 
 ### 📌 3 Module Cốt Lõi:
-1. **Quản lý Nhân Sự (HRM)** - Hồ sơ, hợp đồng, phòng ban, chấm công, lương, nghỉ phép
+1. **Quản lý Nhân Sự (HRM)** - Hồ sơ, hợp đồng, phòng ban
 2. **Quản lý Khách Hàng (CRM)** - Thông tin khách hàng, lịch sử giao dịch, chăm sóc khách hàng
 3. **Quản lý Văn Bản (Document)** - Lưu trữ, phân loại, tìm kiếm, phê duyệt, chia sẻ văn bản
 
 ## 🎨 2. Các Tính Năng Chi Tiết
 
 ### 1️⃣ Quản lý Nhân Sự (HRM Module) 👥
-**Quản lý toàn bộ thông tin nhân viên, phòng ban, hợp đồng, chấm công, lương, nghỉ phép**
+**Quản lý toàn bộ thông tin nhân viên, phòng ban, hợp đồng**
 
 <div align="center">
     <img src="images/nhansu.jpg" alt="Giao diện danh sách nhân sự" width="90%"/>
@@ -93,9 +88,6 @@ Hệ thống **Quản lý Nhân Sự, Khách Hàng & Văn Bản** được xây 
 | 📋 Hồ sơ nhân viên | Thông tin cá nhân, liên lạc, giấy tờ |
 | 🏢 Quản lý phòng ban | Tạo, chỉnh sửa phòng ban, cấu trúc tổ chức |
 | 📜 Hợp đồng lao động | Tạo, theo dõi, quản lý hợp đồng |
-| ⏱️ Chấm công | Check-in/out, báo cáo giờ làm, nghỉ phép |
-| 💰 Tính lương | Tự động tính lương từ dữ liệu chấm công |
-| 📅 Lịch làm việc | Quản lý ca, lịch làm việc, nghỉ lễ |
 | 🔒 Phân quyền | Phân quyền theo phòng ban, vai trò |
 
 ### 2️⃣ Quản lý Khách Hàng (CRM Module) 🤝
@@ -248,7 +240,6 @@ Menu: Nhân sự → Danh sách nhân viên
 Chức năng:
 - Quản lý thông tin nhân viên
 - Quản lý phòng ban, hợp đồng
-- Chấm công, tính lương, nghỉ phép
 - Phân quyền theo phòng ban
 ```
 
@@ -300,7 +291,6 @@ Chức năng:
 ### 📌 Quản Lý Nhân Sự
 ```
 - Tuyển dụng, lưu trữ hồ sơ, hợp đồng
-- Chấm công, tính lương, nghỉ phép
 - Báo cáo nhân sự theo phòng ban
 ```
 
