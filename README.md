@@ -23,16 +23,16 @@
 
 ## 📖 1. Giới thiệu
 
-Hệ thống **Quản lý Nhân Sự (QLNS), Khách Hàng & Văn Bản** được xây dựng trên nền tảng **Odoo 17**, giúp doanh nghiệp số hóa toàn diện quy trình quản trị nhân sự: quản lý nhân viên, lịch sử làm việc, chức vụ, phòng ban; đồng thời chăm sóc khách hàng và lưu trữ, xử lý văn bản nội bộ.
+Hệ thống **Quản lý Nhân Sự, Khách Hàng & Văn Bản** được xây dựng trên nền tảng **Odoo 17**, giúp doanh nghiệp số hóa toàn diện quy trình quản trị nhân sự: quản lý nhân viên, lịch sử làm việc, chức vụ, phòng ban; đồng thời chăm sóc khách hàng và lưu trữ, xử lý văn bản nội bộ.
 
 ### Thông tin kỹ thuật
 
-#### 1. Quản lý Nhân Sự (QLNS)
+#### 1. Quản lý Nhân Sự (HRM)
 **Quản lý nhân viên, lịch sử làm việc, chức vụ, phòng ban:**
     - Model: `Employee` ([addons/hr_presence/models/hr_employee.py](addons/hr_presence/models/hr_employee.py))
     - Quản lý thông tin nhân viên, lịch sử làm việc, chức vụ, phòng ban
 
-#### 2. Quản lý Khách Hàng (QLKH/CRM)
+#### 2. Quản lý Khách Hàng (CRM)
 - **Chức năng chính:**
     - Quản lý thông tin khách hàng
     - Dashboard tổng quan
@@ -77,13 +77,13 @@ Hệ thống **Quản lý Nhân Sự (QLNS), Khách Hàng & Văn Bản** đượ
 - ✅ Dễ dàng mở rộng, tích hợp các module khác
 
 ### 📌 3 Module Cốt Lõi:
-1. **Quản lý Nhân Sự (QLNS)** - Quản lý nhân viên, lịch sử làm việc, chức vụ, phòng ban
+1. **Quản lý Nhân Sự (HRM)** - Quản lý nhân viên, lịch sử làm việc, chức vụ, phòng ban
 2. **Quản lý Khách Hàng (CRM)** - Thông tin khách hàng, lịch sử giao dịch, chăm sóc khách hàng
 3. **Quản lý Văn Bản (Document)** - Văn bản đi, văn bản đến, loại văn bản, mẫu văn bản, luân chuyển văn bản
 
 ## 🎨 2. Các Tính Năng Chi Tiết
 
-### 1️⃣ Quản lý Nhân Sự (QLNS Module) 👥
+### 1️⃣ Quản lý Nhân Sự (HRM Module) 👥
 **Quản lý toàn bộ thông tin nhân viên, lịch sử làm việc, chức vụ, phòng ban**
 
 <div align="center">
@@ -98,7 +98,7 @@ Hệ thống **Quản lý Nhân Sự (QLNS), Khách Hàng & Văn Bản** đượ
 | 🏢 Quản lý phòng ban | Tạo, chỉnh sửa phòng ban, cấu trúc tổ chức |
 | 🔒 Phân quyền | Phân quyền theo phòng ban, chức vụ |
 
-### 2️⃣ Quản lý Khách Hàng (QLKH/CRM Module) 🤝
+### 2️⃣ Quản lý Khách Hàng (CRM Module) 🤝
 **Quản lý khách hàng, cơ hội, tương tác, chăm sóc, lịch sử giao dịch, nhiệm vụ, marketing, phân tích**
 
 <div align="center">
@@ -247,7 +247,7 @@ python odoo-bin.py -c odoo.conf
 
 ## 📚 5. Hướng Dẫn Sử Dụng
 
-### 5.1 Module Quản Lý Nhân Sự (QLNS)
+### 5.1 Module Quản Lý Nhân Sự (HRM)
 ```
 Menu: Nhân sự → Quản lý nhân viên, lịch sử làm việc, chức vụ, phòng ban
 Chức năng:
@@ -257,7 +257,7 @@ Chức năng:
 - Phân quyền theo phòng ban, chức vụ
 ```
 
-### 5.2 Module Quản Lý Khách Hàng (QLKH/CRM)
+### 5.2 Module Quản Lý Khách Hàng (CRM)
 ```
 Menu: QLKH → Khách hàng, Dashboard, Cơ hội, Tương tác, Chăm sóc KH, Lịch sử giao dịch, Ghi chú, Phản hồi, Nhiệm vụ, Email Marketing, Marketing (Old), Phân tích
 Chức năng:
