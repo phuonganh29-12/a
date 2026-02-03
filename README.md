@@ -60,9 +60,9 @@ Hệ thống **Quản lý Nhân Sự, Khách Hàng & Văn Bản** được xây 
 📸 **Giao diện hệ thống**
 
 <p>
-    <img src="images/nhansu.jpg" alt="Màn hình Quản lý nhân sự" width="30%"/>
-    <img src="images/crm.jpg" alt="Màn hình Quản lý khách hàng" width="30%"/>
-    <img src="images/vanban.jpg" alt="Màn hình Quản lý văn bản" width="30%"/>
+    <img src="images/giaodien1.jpg" alt="Màn hình Quản lý nhân sự" width="33%"/>
+    <img src="images/giaodien2.jpg" alt="Màn hình Quản lý khách hàng" width="33%"/>
+    <img src="images/giaodien3.jpg" alt="Màn hình Quản lý văn bản" width="33%"/>
 </p>
 
 </div>
@@ -87,7 +87,7 @@ Hệ thống **Quản lý Nhân Sự, Khách Hàng & Văn Bản** được xây 
 **Quản lý toàn bộ thông tin nhân viên, lịch sử làm việc, chức vụ, phòng ban**
 
 <div align="center">
-    <img src="images/nhansu.jpg" alt="Giao diện danh sách nhân sự" width="90%"/>
+    <img src="images/DSNhansu.jpg" alt="Giao diện danh sách nhân sự" width="90%"/>
 </div>
 
 | Tính năng | Mô tả |
@@ -102,7 +102,8 @@ Hệ thống **Quản lý Nhân Sự, Khách Hàng & Văn Bản** được xây 
 **Quản lý khách hàng, cơ hội, tương tác, chăm sóc, lịch sử giao dịch, nhiệm vụ, marketing, phân tích**
 
 <div align="center">
-    <img src="images/crm.jpg" alt="Giao diện CRM" width="90%"/>
+    <img src="images/khachhang1.jpg" alt="Giao diện CRM" width="45%"/>
+    <img src="images/khachhang2.jpg" alt="Giao diện CRM" width="45%"/>
 </div>
 
 | Tính năng | Mô tả |
