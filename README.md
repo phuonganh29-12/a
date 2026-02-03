@@ -341,7 +341,6 @@ Chúng tôi chào đón các đóng góp từ cộng đồng!
 # 5. Tạo Pull Request
 ```
 
-Xem thêm: [CONTRIBUTING.md](CONTRIBUTING.md)
 
 ---
 
